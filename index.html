@@ -1403,6 +1403,17 @@ body.focus-mode #focus-exit-btn{display:flex;}
 .nexus-score-fill.safe{background:#5a9a6a;}
 .nexus-score-fill.warn{background:#9a9a5a;}
 .nexus-score-fill.danger{background:#9a5a5a;}
+.nx-stat-top{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.nx-stat-icon{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(90,154,106,.12);color:#5a9a6a;}
+.nexus-stat.alert-stat .nx-stat-icon{background:rgba(224,128,128,.12);color:#e08080;}
+.nx-health-ring{width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;background:conic-gradient(var(--ring-color,#5a9a6a) calc(var(--score,0)*1%),rgba(27,36,25,.08) 0);transition:background .6s ease;}
+.nx-health-ring::before{content:'';position:absolute;inset:7px;border-radius:50%;background:var(--bg1,#FBF9F1);}
+.nx-health-ring-val{position:relative;z-index:1;font-family:var(--font-display);font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;}
+.nx-health-ring.safe{--ring-color:#5a9a6a;}
+.nx-health-ring.warn{--ring-color:#9a9a5a;}
+.nx-health-ring.danger{--ring-color:#9a5a5a;}
+.nx-health-status{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:3px;}
+.nx-vine-mark{opacity:.35;flex-shrink:0;}
 .nexus-setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(27,36,25,.04);}
 .nexus-switcher .cdrop-trigger{padding:8px 10px;font-size:12px;font-family:var(--font-display);background:rgba(27,36,25,.03);}
 .nexus-switcher .cdrop-menu{font-size:12px;}
@@ -2156,6 +2167,15 @@ body.focus-mode #focus-exit-btn{display:flex;}
 #page-app #section-nexus .form-input::placeholder{color:var(--nx-mute) !important;}
 #page-app #section-nexus .form-label{color:var(--nx-mute) !important;}
 #page-app #section-nexus .nexus-realtime-feed,#page-app #section-nexus .nexus-feed-text{color:var(--nx-mute);}
+#page-app #section-nexus .nx-stat-icon{background:rgba(143,214,107,.12);color:var(--nx-leaf);}
+#page-app #section-nexus .nexus-stat.alert-stat .nx-stat-icon{background:rgba(232,145,111,.14);color:#E8916F;}
+#page-app #section-nexus .nx-health-ring::before{background:var(--nx-dark2);}
+#page-app #section-nexus .nx-health-ring.safe{--ring-color:var(--nx-leaf);}
+#page-app #section-nexus .nx-health-ring.warn{--ring-color:#E0C878;}
+#page-app #section-nexus .nx-health-ring.danger{--ring-color:#E8916F;}
+#page-app #section-nexus .nx-health-ring-val{color:var(--nx-text);}
+#page-app #section-nexus .nx-health-status{color:var(--nx-text);}
+#page-app #section-nexus .nx-vine-mark{opacity:.4;}
 #page-app #section-nexus .nexus-feed-text strong{color:var(--nx-text);}
 #page-app #section-nexus .nexus-feed-time{color:rgba(148,160,133,.35);}
 #page-app #section-nexus .nexus-sparkline .nexus-spark-bar{background:var(--nx-line-bright);}
@@ -2827,12 +2847,9 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
   <nav class="topnav">
     <a href="#" class="topnav-logo" onclick="navigate('nexus');return false"><div class="logo-mark"><svg width="34" height="34" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M44,156 L100,100 L156,44" fill="none" stroke="#8FD66B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100" cy="100" r="8" fill="#8FD66B"/><polygon points="67,129 47,111 74,114" fill="#8FD66B"/><polygon points="133,71 153,89 126,86" fill="#8FD66B"/><polygon points="58,147 36,147 49,164" fill="#8FD66B"/><polygon points="142,53 164,53 151,36" fill="#8FD66B"/></svg></div>Nexus</a>
     <div class="nav-items">
-      <a class="nav-item" onclick="navigate('home')" data-section="home" style="display:none"><span class="nav-item-icon">⌂</span>Accueil</a>
       <a class="nav-item active" id="nav-nexus" onclick="navigate('nexus')" data-section="nexus"><span class="nav-item-icon">◈</span>Nexus</a>
-      <a class="nav-item" id="nav-architect" onclick="navigate('architect')" data-section="architect" style="display:none"><span class="nav-item-icon">⬡</span>Architect</a>
     </div>
     <div class="topnav-right">
-      <div class="topnav-search" onclick="openSearch()"><span>⌕</span><span style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">Rechercher...</span><span class="search-kbd">/</span></div>
       <div class="topnav-search" onclick="openCmdk()" title="Palette de commandes"><span>⌘</span><span style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">Commandes...</span><span class="search-kbd">⌘K</span></div>
       <button class="notif-btn" title="Mode focus" onclick="toggleFocusMode()">◎</button>
       <div style="position:relative">
@@ -2847,7 +2864,6 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
       </div>
       <div class="nav-avatar" id="nav-avatar" onclick="toggleProfileDropdown()">DC</div>
       <div class="profile-dropdown" id="profile-dropdown">
-        <div class="dropdown-item" onclick="navigate('profile');toggleProfileDropdown()"><span>◈</span>Mon profil</div>
         <div class="dropdown-item" onclick="navigate('settings');toggleProfileDropdown()"><span>⚙</span>Paramètres</div>
         <div class="dropdown-sep"></div>
         <div class="dropdown-item danger" onclick="handleLogout()"><span>↩</span>Se déconnecter</div>
@@ -2856,746 +2872,20 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
   </nav>
   <div class="app-body">
 
-    <!-- ACCUEIL -->
-    <div class="app-section active" id="section-home">
-      <div id="feed-banner-slot"></div>
-      <div class="home-greeting" id="home-greeting">
-        <div class="home-greeting-avatar" id="home-greeting-avatar">DC</div>
-        <div class="home-greeting-text">
-          <div class="home-greeting-title" id="home-greeting-title">Salut 👋</div>
-          <div class="home-greeting-sub">Choisis un module pour commencer.</div>
-        </div>
-        <div class="home-greeting-stats" id="home-greeting-stats"></div>
-      </div>
-      <div id="home-resume-widget" style="display:none"></div>
-      <div id="home-daily-summary" style="display:none"></div>
-      <div class="modules-grid">
-        <div class="module-card soon reveal-up" style="--mod-color:rgba(0,255,163,.5);--mod-color-dim:rgba(0,255,163,.2)" onclick="showToast('DevAI arrive bientôt comme extension indépendante 👀','info')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(0,255,163,.1)">🤖</div>
-            <div class="module-badge soon"><span class="dot"></span>Bientôt</div>
-          </div>
-          <div class="module-name">DevAI</div>
-          <div class="module-desc">Assistant IA spécialisé développeurs. Génère, debug, explique et optimise ton code en temps réel.</div>
-          <div class="module-meta">◇ Intégré à DevConnect — extension indépendante à venir</div>
-        </div>
-        <div class="module-card soon reveal-up" style="--mod-color:rgba(244,63,94,.5);--mod-color-dim:rgba(244,63,94,.2)" onclick="navigate('nexus')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(244,63,94,.1)">🛡️</div>
-            <div class="module-badge soon"><span class="dot"></span>Bientôt</div>
-          </div>
-          <div class="module-name">Nexus</div>
-          <div class="module-desc">Moteur de cybersécurité. Détecte XSS, SQL injection, CSRF et analyse les comportements suspects en temps réel.</div>
-          <div class="module-meta">◇ Intégré à DevConnect — extension indépendante à venir</div>
-        </div>
-        <div class="module-card reveal-up" style="--mod-color:rgba(79,124,255,.5);--mod-color-dim:rgba(79,124,255,.2)" onclick="navigate('recruit')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(79,124,255,.1)">🚀</div>
-            <div class="module-badge" style="border-color:rgba(79,124,255,.3);color:rgba(79,124,255,.9)"><span class="dot"></span>Disponible</div>
-          </div>
-          <div class="module-name">Deploy</div>
-          <div class="module-desc">Recrutement & missions. Trouve ta prochaine mission ou recrute un dev, paiements sécurisés par escrow.</div>
-          <div class="module-meta">◆ Actif sur DevConnect</div>
-        </div>
-        <div class="module-card reveal-up" style="--mod-color:rgba(245,158,11,.5);--mod-color-dim:rgba(245,158,11,.2)" onclick="navigate('ranking')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(245,158,11,.1)">📊</div>
-            <div class="module-badge" style="border-color:rgba(245,158,11,.3);color:rgba(245,158,11,.9)"><span class="dot"></span>Disponible</div>
-          </div>
-          <div class="module-name">Insight</div>
-          <div class="module-desc">Classement & analytics. Surveille tes performances, visualise tes données et optimise en continu.</div>
-          <div class="module-meta">◆ Actif sur DevConnect</div>
-        </div>
-        <div class="module-card reveal-up" style="--mod-color:rgba(139,92,246,.5);--mod-color-dim:rgba(139,92,246,.2)" onclick="navigate('feed')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(139,92,246,.1)">👥</div>
-            <div class="module-badge" style="border-color:rgba(139,92,246,.3);color:rgba(139,92,246,.9)"><span class="dot"></span>Disponible</div>
-          </div>
-          <div class="module-name">Teams</div>
-          <div class="module-desc">Collaboration en temps réel. Fil d'actualité, messagerie, DMs et découverte de la communauté.</div>
-          <div class="module-meta">◆ Actif sur DevConnect</div>
-        </div>
-        <div class="module-card reveal-up" style="--mod-color:rgba(0,212,255,.5);--mod-color-dim:rgba(0,212,255,.2)" onclick="navigate('editor')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(0,212,255,.1)">💻</div>
-            <div class="module-badge" style="border-color:rgba(0,212,255,.3);color:rgba(0,212,255,.9)"><span class="dot"></span>Disponible</div>
-          </div>
-          <div class="module-name">Code</div>
-          <div class="module-desc">Éditeur de code en ligne avec IA, coloration syntaxique, auto-save et partage de snippets.</div>
-          <div class="module-meta">◆ Actif sur DevConnect</div>
-        </div>
-        <div class="module-card reveal-up" style="--mod-color:rgba(16,185,129,.5);--mod-color-dim:rgba(16,185,129,.2)" onclick="navigate('learn')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(16,185,129,.1)">📚</div>
-            <div class="module-badge" style="border-color:rgba(16,185,129,.3);color:rgba(16,185,129,.9)"><span class="dot"></span>Disponible</div>
-          </div>
-          <div class="module-name">Docs</div>
-          <div class="module-desc">Génère et gère ta documentation automatiquement. Challenges, XP et progression par domaine.</div>
-          <div class="module-meta">◆ Actif sur DevConnect</div>
-        </div>
-        <div class="module-card soon reveal-up" style="--mod-color:rgba(232,121,249,.5);--mod-color-dim:rgba(232,121,249,.2)" onclick="showToast('Marketplace arrive une fois DevConnect commercialisé 👀','info')">
-          <div class="module-top">
-            <div class="module-icon" style="background:rgba(232,121,249,.1)">🛒</div>
-            <div class="module-badge soon"><span class="dot"></span>Bientôt</div>
-          </div>
-          <div class="module-name">Marketplace</div>
-          <div class="module-desc">Extensions, thèmes et outils créés par la communauté. Monétise tes créations ou découvre celles des autres.</div>
-          <div class="module-meta">◇ Pas encore commercialisé</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TEAMS — FIL D'ACTUALITÉ -->
-    <div class="app-section" id="section-feed">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Teams</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="feed" onclick="navigate('feed')">Fil d'actualité</span>
-          <span class="module-subnav-tab" data-target="messages" onclick="navigate('messages')">Messages</span>
-          <span class="module-subnav-tab" data-target="discover" onclick="navigate('discover')">Découverte</span>
-          <span class="module-subnav-tab" data-target="team" onclick="navigate('team')">Mon équipe</span>
-        </div>
-      </div>
-      <div class="home-layout">
-        <div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-            <div class="feed-title">Fil d'actualité</div>
-            <button class="btn btn-ghost btn-sm">Récents</button>
-          </div>
-          <div class="composer">
-            <div class="composer-row">
-              <div class="composer-avatar" id="composer-avatar">DC</div>
-              <textarea class="composer-input" id="post-composer" placeholder="Partage quelque chose avec la communauté..."></textarea>
-            </div>
-            <div class="composer-actions">
-              <div class="composer-tools">
-                <button class="composer-tool" onclick="insertTag('code')">{ code }</button>
-                <button class="composer-tool" onclick="insertTag('link')">lien</button>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="publishPost()">Publier</button>
-            </div>
-          </div>
-          <div id="feed-posts">
-            <div class="empty-state"><div class="empty-state-icon">◆</div><div class="empty-state-text">Chargement du fil...</div></div>
-          </div>
-        </div>
-        <div>
-          <div class="sidebar-widget">
-            <div class="widget-title">★ Top cette semaine</div>
-            <div id="sidebar-leaderboard"><div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono)">Chargement...</div></div>
-          </div>
-          <div class="sidebar-widget">
-            <div class="widget-title">◷ Events à venir</div>
-            <div class="event-row"><div class="event-date"><span class="event-day">28</span><span class="event-month">janv</span></div><div class="event-info"><div class="event-name">Hackathon IA #3</div><div class="event-meta">En ligne</div></div></div>
-            <div class="event-row"><div class="event-date"><span class="event-day">3</span><span class="event-month">fév</span></div><div class="event-info"><div class="event-name">CTF Cybersec Night</div><div class="event-meta">En ligne</div></div></div>
-          </div>
-          <div class="sidebar-widget">
-            <div class="widget-title">⌨ Compétences populaires</div>
-            <div style="display:flex;flex-wrap:wrap;gap:5px">
-              <span class="tag-item" style="cursor:default">Python</span><span class="tag-item" style="cursor:default">React</span><span class="tag-item" style="cursor:default">Docker</span><span class="tag-item" style="cursor:default">Pentest</span><span class="tag-item" style="cursor:default">Rust</span><span class="tag-item" style="cursor:default">K8s</span><span class="tag-item" style="cursor:default">LLM</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROFIL -->
-    <div class="app-section" id="section-profile">
-      <div class="profile-layout">
-        <div>
-          <div class="profile-card">
-            <div class="profile-banner" id="profile-banner"></div>
-            <div class="profile-avatar-wrap"><div class="profile-avatar" id="profile-avatar-big">DC</div></div>
-            <div class="profile-info">
-              <div class="profile-name" id="profile-display-name">Utilisateur <span class="architect-badge" id="profile-role-badge" style="display:none">Architect</span></div>
-              <div class="profile-username" id="profile-username-display">@username</div>
-              <div class="profile-status-pill" id="profile-status-pill" style="display:none"></div>
-              <div class="profile-bio" id="profile-bio-display">Aucune bio renseignée.</div>
-              <div id="profile-pronouns-display" style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);margin-top:2px;display:none"></div>
-              <div class="profile-badges"><span class="profile-badge" id="profile-specialty-badge">Tech</span></div>
-              <div class="profile-stats">
-                <div class="stat-item"><div class="stat-num" id="profile-xp">0</div><div class="stat-label">xp</div></div>
-                <div class="stat-item"><div class="stat-num" id="profile-streak">0</div><div class="stat-label">streak</div></div>
-                <div class="stat-item"><div class="stat-num" id="profile-projects-count">0</div><div class="stat-label">projets</div></div>
-              </div>
-              <div class="profile-links">
-                <a href="#" class="profile-link" id="profile-github-link" style="display:none">GitHub</a>
-                <a href="#" class="profile-link" id="profile-linkedin-link" style="display:none">LinkedIn</a>
-                <a href="#" class="profile-link" id="profile-portfolio-link" style="display:none">Portfolio</a>
-              </div>
-              <div class="profile-widgets" id="profile-widgets"></div>
-              <button class="btn btn-ghost w-full" style="margin-top:16px;justify-content:center;font-size:13px" onclick="navigate('settings')">Modifier le profil</button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="profile-tabs">
-            <button class="profile-tab active" onclick="switchProfileTab('projects',this)">Projets</button>
-            <button class="profile-tab" onclick="switchProfileTab('cv',this)">CV & Expériences</button>
-            <button class="profile-tab" onclick="switchProfileTab('badges',this)">Badges</button>
-            <button class="profile-tab" onclick="switchProfileTab('stats',this)">Stats</button>
-          </div>
-          <div class="profile-tab-content active" id="tab-projects">
-            <div id="projects-list"><div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px">Chargement...</div></div>
-            <button class="btn btn-ghost w-full" style="justify-content:center;font-size:13px;margin-top:8px" onclick="openAddProjectModal()">+ Ajouter un projet</button>
-          </div>
-          <div class="profile-tab-content" id="tab-cv">
-            <div id="cv-list"><div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px">Chargement...</div></div>
-            <button class="btn btn-ghost w-full" style="justify-content:center;font-size:13px;margin-top:8px" onclick="openAddExperienceModal()">+ Ajouter une expérience</button>
-          </div>
-          <div class="profile-tab-content" id="tab-badges">
-            <div id="badges-list" class="badge-grid"><div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px">Chargement...</div></div>
-          </div>
-          <div class="profile-tab-content" id="tab-stats">
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-              <div class="sidebar-widget"><div class="widget-title">XP Total</div><div style="font-family:var(--font-display);font-size:32px;font-weight:600" id="stats-xp">0</div></div>
-              <div class="sidebar-widget"><div class="widget-title">Challenges complétés</div><div style="font-family:var(--font-display);font-size:32px;font-weight:600" id="stats-challenges">0</div></div>
-              <div class="sidebar-widget"><div class="widget-title">Streak</div><div style="font-family:var(--font-display);font-size:32px;font-weight:600" id="stats-streak">0 jours</div></div>
-              <div class="sidebar-widget"><div class="widget-title">Posts publiés</div><div style="font-family:var(--font-display);font-size:32px;font-weight:600" id="stats-posts">0</div></div>
-            </div>
-            <div id="stats-github-heatmap"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MESSAGES -->
-    <div class="app-section" id="section-messages">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Teams</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="feed" onclick="navigate('feed')">Fil d'actualité</span>
-          <span class="module-subnav-tab" data-target="messages" onclick="navigate('messages')">Messages</span>
-          <span class="module-subnav-tab" data-target="discover" onclick="navigate('discover')">Découverte</span>
-          <span class="module-subnav-tab" data-target="team" onclick="navigate('team')">Mon équipe</span>
-        </div>
-      </div>
-      <div class="messages-layout">
-        <div class="channels-sidebar">
-          <div class="channels-header">Messages</div>
-          <div class="channels-list">
-            <div class="section-label-sidebar">Espaces publics</div>
-            <div class="channel-item active" onclick="switchChannel(this,'général')"># général</div>
-            <div class="channel-item" onclick="switchChannel(this,'aide')"># aide</div>
-            <div class="channel-item" onclick="switchChannel(this,'projets')"># projets</div>
-            <div class="channel-item" onclick="switchChannel(this,'showcase')"># showcase</div>
-            <div class="channel-item" onclick="switchChannel(this,'cybersec')"># cybersec</div>
-            <div class="channel-item" onclick="switchChannel(this,'devops')"># devops</div>
-            <div class="channel-item" onclick="switchChannel(this,'data-ia')"># data-ia</div>
-            <div class="section-label-sidebar" style="margin-top:8px">Messages directs</div>
-            <div class="dm-new-btn" onclick="openNewDmModal()">+ Nouveau message</div>
-            <div class="dm-list" id="dm-list"><div style="font-size:12px;color:var(--text-muted);padding:4px 10px">Chargement...</div></div>
-          </div>
-        </div>
-        <div class="chat-area">
-          <div class="chat-header">
-            <span class="channel-hash" style="color:var(--text-muted)">#</span>
-            <div><div class="chat-header-name" id="current-channel-name">général</div><div class="chat-header-desc">Salon général de discussion</div></div>
-          </div>
-          <div class="chat-messages" id="chat-messages">
-            <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px">Chargement...</div>
-          </div>
-          <div class="chat-input-area">
-            <div class="chat-input-box">
-              <input class="chat-input" id="chat-input" placeholder="Message #général..." onkeydown="if(event.key==='Enter')sendMessage()">
-              <div class="chat-tools">
-                <button class="chat-tool" onclick="toggleKeyboard()" title="Caractères spéciaux">⌨</button>
-                <button class="chat-tool" onclick="sendMessage()" title="Envoyer">↑</button>
-              </div>
-            </div>
-            <div class="keyboard-panel" id="keyboard-panel">
-              <div class="keyboard-panel-header"><span style="font-size:13px;font-weight:500">Caractères spéciaux</span><button class="modal-close" onclick="toggleKeyboard()">×</button></div>
-              <div class="keyboard-tabs">
-                <button class="keyboard-tab active" onclick="switchKeyboardTab(this,'symbols')">Symboles</button>
-                <button class="keyboard-tab" onclick="switchKeyboardTab(this,'code')">Code</button>
-                <button class="keyboard-tab" onclick="switchKeyboardTab(this,'math')">Math</button>
-              </div>
-              <div class="keyboard-chars" id="keyboard-chars"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DÉCOUVERTE -->
-    <div class="app-section" id="section-discover">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Teams</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="feed" onclick="navigate('feed')">Fil d'actualité</span>
-          <span class="module-subnav-tab" data-target="messages" onclick="navigate('messages')">Messages</span>
-          <span class="module-subnav-tab" data-target="discover" onclick="navigate('discover')">Découverte</span>
-          <span class="module-subnav-tab" data-target="team" onclick="navigate('team')">Mon équipe</span>
-        </div>
-      </div>
-      <div class="discover-layout">
-        <div>
-          <div class="discover-search-bar"><span style="color:var(--text-muted);font-size:18px">⌕</span><input class="discover-search-input" placeholder="Rechercher un dev, une compétence, un profil..." oninput="filterDevs(this.value)"></div>
-          <div class="filter-row">
-            <button class="filter-chip active" onclick="setFilter(this,'all')">Tous</button>
-            <button class="filter-chip" onclick="setFilter(this,'web_dev')">Dev Web</button>
-            <button class="filter-chip" onclick="setFilter(this,'cybersecurity')">Cyber</button>
-            <button class="filter-chip" onclick="setFilter(this,'devops')">DevOps</button>
-            <button class="filter-chip" onclick="setFilter(this,'data')">Data</button>
-            <button class="filter-chip" onclick="setFilter(this,'ai_ml')">IA</button>
-            <button class="filter-chip" onclick="setFilter(this,'mobile_dev')">Mobile</button>
-            <button class="filter-chip" onclick="setFilter(this,'recruiter')">Recruteur</button>
-          </div>
-          <div class="sub-filters" id="sub-filters"></div>
-          <div id="dev-results">
-            <div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div>
-          </div>
-        </div>
-        <div class="ai-panel" id="ai-panel">
-          <div class="ai-panel-header"><div class="ai-panel-title"><div class="ai-dot"></div>Suggestions IA</div><button class="ai-close" onclick="closeAiPanel()">×</button></div>
-          <div class="ai-panel-body">
-            <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Basé sur ta recherche, les profils les plus fiables :</div>
-            <div id="ai-suggestions-list"><div style="font-size:12px;color:var(--text-muted)">Chargement...</div></div>
-          </div>
-        </div>
-        <button id="reopen-ai-btn" onclick="reopenAiPanel()" style="display:none;position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:var(--accent);border:none;align-items:center;justify-content:center;cursor:pointer;z-index:50;font-size:18px;color:#000;box-shadow:0 4px 16px rgba(0,0,0,.4)">⌕</button>
-      </div>
-    </div>
-
-    <!-- TEAMS — MON ÉQUIPE -->
-    <div class="app-section" id="section-team">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Teams</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="feed" onclick="navigate('feed')">Fil d'actualité</span>
-          <span class="module-subnav-tab" data-target="messages" onclick="navigate('messages')">Messages</span>
-          <span class="module-subnav-tab" data-target="discover" onclick="navigate('discover')">Découverte</span>
-          <span class="module-subnav-tab active" data-target="team" onclick="navigate('team')">Mon équipe</span>
-        </div>
-      </div>
-      <div class="team-layout" id="team-layout-cont">
-        <div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div>
-      </div>
-    </div>
-
-    <!-- APPRENDRE -->
-    <div class="app-section" id="section-learn">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Docs</span>
-      </div>
-      <div style="max-width:1100px;margin:0 auto;padding:24px 24px 0">
-        <div class="docs-tabs">
-          <span class="docs-tab active" data-docs-tab="generator" onclick="switchDocsTab(this,'generator')">Générateur</span>
-          <span class="docs-tab" data-docs-tab="saved" onclick="switchDocsTab(this,'saved')">Mes docs</span>
-          <span class="docs-tab" data-docs-tab="challenges" onclick="switchDocsTab(this,'challenges')">Challenges</span>
-        </div>
-      </div>
-
-      <div class="docs-pane active" id="docs-pane-generator">
-        <div class="docs-gen-layout">
-          <div>
-            <select class="docs-lang-select" id="docs-gen-lang">
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="typescript">TypeScript</option>
-              <option value="java">Java</option>
-              <option value="php">PHP</option>
-              <option value="other">Autre</option>
-            </select>
-            <textarea class="docs-gen-input" id="docs-gen-code" placeholder="Colle ton code ici (une fonction, une classe, un fichier...)"></textarea>
-            <div class="docs-gen-actions">
-              <button class="btn btn-primary btn-sm" onclick="generateDocFromCode()">⚡ Générer la documentation</button>
-              <button class="btn btn-ghost btn-sm" onclick="saveGeneratedDoc()" id="docs-save-btn" style="display:none">💾 Sauvegarder</button>
-            </div>
-          </div>
-          <div class="docs-gen-output" id="docs-gen-output">
-            <div style="color:var(--text-muted);font-size:13px">La documentation générée apparaîtra ici. Colle du code à gauche et clique sur Générer.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="docs-pane" id="docs-pane-saved">
-        <div style="max-width:1100px;margin:0 auto;padding:0 24px 40px">
-          <div style="display:flex;gap:6px;margin-bottom:14px">
-            <button class="filter-chip active" data-docs-filter="all" onclick="setDocsFilter(this,'all')">Toutes</button>
-            <button class="filter-chip" data-docs-filter="bookmarked" onclick="setDocsFilter(this,'bookmarked')">★ Marque-pages</button>
-          </div>
-          <div id="docs-saved-list"><div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div></div>
-        </div>
-      </div>
-
-      <div class="docs-pane" id="docs-pane-challenges">
-      <div class="learn-layout">
-        <div class="learn-sidebar">
-          <div class="widget-title" style="margin-bottom:12px">Catégories</div>
-          <div class="learn-cat active" onclick="setLearnCat(this,'all')"><span class="learn-cat-icon">◈</span>Tous</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'cybersecurity')"><span class="learn-cat-icon">⬡</span>Cybersécurité</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'web_dev')"><span class="learn-cat-icon">◉</span>Dev Web</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'algorithm')"><span class="learn-cat-icon">◆</span>Algorithmes</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'devops')"><span class="learn-cat-icon">⬢</span>DevOps</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'data')"><span class="learn-cat-icon">◇</span>Data</div>
-          <div class="learn-cat" onclick="setLearnCat(this,'ai_ml')"><span class="learn-cat-icon">⬟</span>IA / ML</div>
-          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-            <div class="widget-title" style="margin-bottom:10px">Ta progression</div>
-            <div id="learn-progress"><div style="font-size:12px;color:var(--text-muted)">Connecte-toi pour voir ta progression.</div></div>
-          </div>
-          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-            <div class="widget-title" style="margin-bottom:10px">Badges par parcours</div>
-            <div id="learn-badges" class="badge-grid"><div style="font-size:12px;color:var(--text-muted)">Connecte-toi pour voir tes badges.</div></div>
-          </div>
-        </div>
-        <div>
-          <div class="learn-header">
-            <div class="feed-title">Challenges</div>
-            <div class="difficulty-filters">
-              <button class="diff-btn easy active" onclick="toggleDiff(this,'easy')">Facile</button>
-              <button class="diff-btn medium active" onclick="toggleDiff(this,'medium')">Moyen</button>
-              <button class="diff-btn hard active" onclick="toggleDiff(this,'hard')">Hard</button>
-              <button class="diff-btn extreme active" onclick="toggleDiff(this,'extreme')">Extrême</button>
-            </div>
-          </div>
-          <div id="challenges-list">
-            <div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-
-    <!-- CLASSEMENT -->
-    <div class="app-section" id="section-ranking">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Insight</span>
-      </div>
-      <div class="ranking-layout">
-        <div class="insight-tabs">
-          <span class="insight-tab active" data-insight-tab="dashboard" onclick="switchInsightTab(this,'dashboard')">Dashboard</span>
-          <span class="insight-tab" data-insight-tab="ranking" onclick="switchInsightTab(this,'ranking')">Classement</span>
-        </div>
-
-        <div class="insight-pane active" id="insight-pane-dashboard">
-          <div class="insight-kpi-row" id="insight-kpi-row">
-            <div class="insight-kpi"><div class="insight-kpi-val" id="insight-kpi-xp">—</div><div class="insight-kpi-label">XP total</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-val" id="insight-kpi-snippets">—</div><div class="insight-kpi-label">Snippets publiés</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-val" id="insight-kpi-projects">—</div><div class="insight-kpi-label">Projets actifs</div></div>
-            <div class="insight-kpi"><div class="insight-kpi-val" id="insight-kpi-streak">—</div><div class="insight-kpi-label">Jours d'activité (30j)</div></div>
-          </div>
-          <div class="insight-chart-card" id="insight-weekly-challenge-card" style="display:none;border-color:rgba(232,169,74,.3)">
-            <div class="insight-chart-title">🔥 Défi de la semaine <span style="color:#e8a94a">+50% XP</span></div>
-            <div id="insight-weekly-challenge-body" style="font-size:13px;color:var(--text-secondary)"></div>
-          </div>
-          <div class="insight-chart-card">
-            <div class="insight-chart-title">Activité — 14 derniers jours</div>
-            <div class="insight-chart-bars" id="insight-activity-chart"><div class="insight-empty">Chargement...</div></div>
-          </div>
-          <div class="insight-chart-card">
-            <div class="insight-chart-title">Évolution de ton classement — 30 derniers jours</div>
-            <div id="insight-rank-chart"><div class="insight-empty">Chargement...</div></div>
-          </div>
-          <div class="insight-chart-card">
-            <div class="insight-chart-title">Langages les plus utilisés</div>
-            <div id="insight-lang-breakdown"><div class="insight-empty">Chargement...</div></div>
-          </div>
-        </div>
-
-        <div class="insight-pane" id="insight-pane-ranking">
-          <div class="ranking-header">
-            <div class="feed-title">Classement</div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <button class="filter-chip active" onclick="setRankingPeriod(this,'week')">Cette semaine</button>
-              <button class="filter-chip" onclick="setRankingPeriod(this,'month')">Ce mois</button>
-              <button class="filter-chip" onclick="setRankingPeriod(this,'global')">Global</button>
-              <button class="filter-chip" id="ranking-spec-toggle" onclick="toggleRankingSpecFilter(this)">Ma spécialité uniquement</button>
-            </div>
-          </div>
-          <div class="ranking-table">
-            <div class="ranking-row header"><span>#</span><span>Membre</span><span>Score</span></div>
-            <div id="ranking-rows"><div style="padding:24px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RECRUTEMENT -->
-    <div class="app-section" id="section-recruit">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Deploy</span>
-      </div>
-      <div style="max-width:1100px;margin:0 auto;padding:24px 24px 0">
-        <div class="deploy-tabs">
-          <span class="deploy-tab active" data-deploy-tab="deployments" onclick="switchDeployTab(this,'deployments')">Déploiements</span>
-          <span class="deploy-tab" data-deploy-tab="recruit" onclick="switchDeployTab(this,'recruit')">Recrutement</span>
-          <span class="deploy-tab" data-deploy-tab="applications" onclick="switchDeployTab(this,'applications')">Candidatures</span>
-        </div>
-      </div>
-
-      <div class="deploy-pane active" id="deploy-pane-deployments">
-        <div style="max-width:1100px;margin:0 auto;padding:0 24px 40px">
-          <div class="recruit-hero">
-            <div class="recruit-hero-icon">🚀</div>
-            <div>
-              <div class="recruit-hero-title">Déploie tes projets en un clic</div>
-              <div class="recruit-hero-sub">Suis le statut de tes builds, consulte les logs et garde un historique de tes mises en ligne.</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-            <div class="feed-title">Mes projets</div>
-          </div>
-          <div id="deploy-list">
-            <div class="empty-state"><div class="empty-state-icon">🚀</div><div class="empty-state-text">Aucun projet à déployer.</div><div class="empty-state-sub">Ajoute un projet depuis ton profil pour le voir apparaître ici.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="deploy-pane" id="deploy-pane-recruit">
-      <div class="recruit-layout">
-        <div>
-          <div class="recruit-hero">
-            <div class="recruit-hero-icon">⬡</div>
-            <div>
-              <div class="recruit-hero-title">Recrute ou trouve ta prochaine mission</div>
-              <div class="recruit-hero-sub">Des devs vérifiés, des paiements sécurisés par escrow, zéro mauvaise surprise.</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-            <div class="feed-title">Offres disponibles</div>
-            <button class="btn btn-primary btn-sm" onclick="openJobModal()">+ Publier une offre</button>
-          </div>
-          <div id="job-list">
-            <div class="empty-state"><div class="empty-state-icon">⬡</div><div class="empty-state-text">Aucune offre pour l'instant.</div><div class="empty-state-sub">Sois le premier à publier une mission !</div></div>
-          </div>
-        </div>
-        <div>
-          <div class="sidebar-widget">
-            <div class="widget-title">◆ Comment ça marche</div>
-            <div class="how-it-works-step"><span class="hiw-num">1</span><div><div class="hiw-title">Publie ou postule</div><div class="hiw-sub">Décris la mission ou ton profil</div></div></div>
-            <div class="how-it-works-step"><span class="hiw-num">2</span><div><div class="hiw-title">Échangez en DM</div><div class="hiw-sub">Discutez des détails directement</div></div></div>
-            <div class="how-it-works-step"><span class="hiw-num">3</span><div><div class="hiw-title">Paiement sécurisé</div><div class="hiw-sub">Les fonds passent par notre escrow</div></div></div>
-          </div>
-          <div class="sidebar-widget">
-            <div class="widget-title">⬡ Commission DevConnect</div>
-            <div style="font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between"><span style="color:var(--text-muted)">Standard</span><span class="font-mono">10%</span></div>
-            <div style="font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between"><span><span class="premium-badge devplus">Dev+</span></span><span class="font-mono">7%</span></div>
-            <div style="font-size:13px;padding:8px 0;display:flex;justify-content:space-between"><span><span class="premium-badge devconnectplus">DevConnect+</span></span><span class="font-mono">6%</span></div>
-          </div>
-          <div class="sidebar-widget"><div class="widget-title">⌘ Mes transactions</div><div style="font-size:13px;color:var(--text-secondary)">Aucune transaction pour l'instant.</div></div>
-          <div class="sidebar-widget">
-            <div class="widget-title">🔔 Alertes offres</div>
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Sois notifié dès qu'une offre correspond à ton profil.</div>
-            <div class="form-group" style="margin-bottom:8px"><label class="form-label" style="font-size:11px">Mots-clés / stack</label><input type="text" class="form-input" id="alert-keywords" placeholder="React, Node.js, remote" style="font-size:12px"></div>
-            <div class="form-group" style="margin-bottom:8px"><label class="form-label" style="font-size:11px">Budget minimum (€)</label><input type="number" class="form-input" id="alert-min-budget" placeholder="1500" style="font-size:12px"></div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <button class="toggle" id="alert-active-toggle" onclick="this.classList.toggle('on')"></button>
-              <span style="font-size:12px;color:var(--text-secondary)">Alertes actives</span>
-            </div>
-            <button class="btn btn-primary btn-sm w-full" onclick="saveJobAlertPrefs()">Enregistrer mes alertes</button>
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <div class="deploy-pane" id="deploy-pane-applications">
-        <div style="max-width:1100px;margin:0 auto;padding:0 24px 40px">
-          <div class="feed-title">Mes candidatures</div>
-          <div style="font-size:12px;color:var(--text-muted);margin:4px 0 16px">Le statut avance quand le recruteur fait progresser ta candidature.</div>
-          <div class="kanban-board" id="my-applications-kanban">
-            <div class="kanban-col" data-stage="sent"><div class="kanban-col-title"><span>Envoyé</span><span id="my-app-count-sent">0</span></div><div id="my-app-list-sent"></div></div>
-            <div class="kanban-col" data-stage="interview"><div class="kanban-col-title"><span>Entretien</span><span id="my-app-count-interview">0</span></div><div id="my-app-list-interview"></div></div>
-            <div class="kanban-col" data-stage="offer"><div class="kanban-col-title"><span>Offre</span><span id="my-app-count-offer">0</span></div><div id="my-app-list-offer"></div></div>
-          </div>
-          <div class="feed-title" style="margin-top:36px">Candidatures reçues sur mes offres</div>
-          <div style="font-size:12px;color:var(--text-muted);margin:4px 0 16px">Fais avancer un candidat dans le pipeline.</div>
-          <div id="received-applications-list">
-            <div class="empty-state"><div class="empty-state-icon">📥</div><div class="empty-state-text">Aucune candidature reçue.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SNIPPETS -->
-    <div class="app-section" id="section-snippets">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Code</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="editor" onclick="navigate('editor')">Éditeur</span>
-          <span class="module-subnav-tab" data-target="snippets" onclick="navigate('snippets')">Snippets</span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-        <div>
-          <div class="feed-title">Bibliothèque de Snippets</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Du code réutilisable partagé par la communauté</div>
-        </div>
-        <button class="btn btn-primary btn-sm" onclick="openAddSnippetModal()">+ Publier un snippet</button>
-      </div>
-      <div class="filter-chips" id="snippet-lang-filters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-        <button class="filter-chip active" onclick="setSnippetLangFilter(this,'all')">Tous</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'javascript')">JavaScript</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'python')">Python</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'css')">CSS</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'html')">HTML</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'sql')">SQL</button>
-        <button class="filter-chip" onclick="setSnippetLangFilter(this,'other')">Autre</button>
-      </div>
-      <div id="snippets-list"><div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px;font-family:var(--font-mono)">Chargement...</div></div>
-    </div>
-
-    <!-- ÉDITEUR -->
-    <div class="app-section" id="section-editor">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title">Code</span>
-        <div class="module-subnav-tabs">
-          <span class="module-subnav-tab" data-target="editor" onclick="navigate('editor')">Éditeur</span>
-          <span class="module-subnav-tab" data-target="snippets" onclick="navigate('snippets')">Snippets</span>
-        </div>
-      </div>
-      <div class="editor-layout">
-        <div class="editor-sidebar">
-          <div class="editor-sidebar-header" style="display:flex;align-items:center;justify-content:space-between">
-            <span>Explorateur</span>
-            <span style="display:flex;gap:6px">
-              <button title="Aperçu en direct" onclick="runEditorPreview()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:13px">▶</button>
-              <button title="Nouveau fichier" onclick="createEditorFile()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:14px">+</button>
-              <button title="Importer un fichier" onclick="document.getElementById('file-import-input').click()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:13px">⇪</button>
-              <button title="Télécharger le fichier actif" onclick="downloadEditorFile()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:13px">⇩</button>
-              <button title="Historique des versions" onclick="openFileHistory()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:13px">🕘</button>
-            </span>
-          </div>
-          <input type="file" id="file-import-input" style="display:none" onchange="importEditorFile(this)">
-          <div class="file-tree" id="editor-file-tree"></div>
-        </div>
-        <div class="editor-main">
-          <div class="editor-tabs" id="editor-tabs"></div>
-          <textarea class="editor-code-area" id="code-editor" spellcheck="false" oninput="onEditorEdit()"></textarea>
-          <div class="editor-statusbar"><span id="editor-lang-label">JavaScript</span><span>UTF-8</span><span>Ln 1, Col 1</span><span id="editor-save-status" style="margin-left:auto;font-family:var(--font-mono);font-size:11px;transition:color .3s"></span></div>
-        </div>
-        <div class="editor-ai-panel">
-          <div class="editor-ai-header"><div class="ai-dot"></div>Assistant IA <span style="font-size:10px;color:var(--text-muted);font-family:var(--font-mono);margin-left:auto">Qwen · OpenRouter</span><button onclick="clearAiHistory()" title="Nouvelle conversation" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;padding:0 0 0 8px;line-height:1" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">↺</button></div>
-          <div id="editor-ai-key-banner" style="display:none;padding:8px 10px;background:rgba(224,160,90,.08);border-bottom:1px solid rgba(224,160,90,.2);font-size:11px;font-family:var(--font-mono);color:#e0a05a">
-            🔑 <span>Clé API requise — </span><button onclick="promptAiKey()" style="background:none;border:none;color:#e0a05a;cursor:pointer;font-family:var(--font-mono);font-size:11px;text-decoration:underline;padding:0">Configurer</button>
-          </div>
-          <div class="editor-ai-messages" id="editor-ai-messages">
-            <div class="ai-msg ai">Bonjour ! Je suis ton assistant de code. Je peux t'aider à déboguer, suggérer des améliorations ou expliquer du code.<br><br>Pose-moi une question sur ton code ou colle un extrait à analyser.</div>
-          </div>
-          <div class="editor-ai-input">
-            <input type="text" id="editor-ai-input" placeholder="Demande quelque chose..." onkeydown="if(event.key==='Enter')sendEditorAI()">
-            <button class="btn btn-primary btn-sm" onclick="sendEditorAI()">↑</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- PARAMÈTRES -->
     <div class="app-section" id="section-settings">
       <div class="settings-layout">
         <div class="settings-sidebar">
           <div class="settings-sidebar-label">Mon compte</div>
-          <div class="settings-nav-item active" onclick="switchSettings(this,'profil')"><span class="s-icon">◈</span>Mon profil</div>
-          <div class="settings-nav-item" onclick="switchSettings(this,'compte')"><span class="s-icon">⚙</span>Compte</div>
+          <div class="settings-nav-item active" onclick="switchSettings(this,'compte')"><span class="s-icon">⚙</span>Compte</div>
           <div class="settings-nav-item" onclick="switchSettings(this,'securite')"><span class="s-icon">◆</span>Sécurité & confidentialité</div>
-          <div class="settings-sidebar-label">Personnalisation</div>
-          <div class="settings-nav-item" onclick="switchSettings(this,'apparence')"><span class="s-icon">◉</span>Apparence & profil</div>
-          <div class="settings-nav-item" onclick="switchSettings(this,'notifs')"><span class="s-icon">🔔</span>Notifications</div>
-          <div class="settings-nav-item" onclick="switchSettings(this,'premium-s')"><span class="s-icon">✦</span>Premium</div>
           <div class="settings-nav-sep"></div>
           <div class="settings-sidebar-label">Avancé</div>
           <div class="settings-nav-item danger" onclick="switchSettings(this,'danger')"><span class="s-icon">⚠</span>Zone de danger</div>
         </div>
         <div class="settings-content">
           <div class="settings-content-inner">
-          <div class="settings-section active" id="settings-profil">
-            <div class="settings-page-title">Mon profil</div>
-            <div class="settings-page-sub">Ces informations sont visibles par tous les membres de DevConnect.</div>
-
-            <div class="settings-avatar-row">
-              <div class="settings-avatar-img" id="s-avatar-preview">DC</div>
-              <div class="settings-avatar-info">
-                <div class="settings-avatar-name" id="s-avatar-username">—</div>
-                <div class="settings-avatar-role" id="s-avatar-role">—</div>
-              </div>
-              <div>
-                <input type="file" id="s-avatar-input" accept="image/png,image/jpeg,image/webp" style="display:none" onchange="uploadAvatar(this)">
-                <button class="btn btn-ghost btn-sm" onclick="document.getElementById('s-avatar-input').click()">Changer la photo</button>
-                <div style="font-size:11px;color:var(--text-muted);margin-top:6px">JPG, PNG, WebP — 2 Mo max.</div>
-              </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start">
-              <div>
-                <div class="settings-block">
-                  <div class="settings-block-title">Informations</div>
-                  <div class="settings-field"><label>Nom d'utilisateur <span style="font-size:10px;color:var(--text-muted);font-weight:400;text-transform:none">(nom affiché, libre)</span></label><input type="text" id="s-displayname" placeholder="Ton nom affiché" oninput="updateLivePreview()"></div>
-                  <div class="settings-field"><label>Pseudo <span style="font-size:10px;color:var(--text-muted);font-weight:400;text-transform:none">(identifiant unique @, pour te retrouver)</span></label><input type="text" id="s-username" placeholder="ton_pseudo" style="font-family:var(--font-mono)" oninput="updateLivePreview()"></div>
-                  <div class="settings-field"><label>Pronoms <span style="font-size:10px;color:var(--text-muted);font-weight:400;text-transform:none">(optionnel)</span></label><input type="text" id="s-pronouns" placeholder="il/lui, she/her, they/them..." oninput="updateLivePreview()"></div>
-                  <div class="settings-field"><label>Bio</label><textarea id="s-bio" placeholder="Décris-toi en quelques mots..." oninput="updateLivePreview()"></textarea></div>
-                  <div class="settings-field"><label>Titre / Poste</label><input type="text" id="s-title" placeholder="Développeur Fullstack · Paris" oninput="updateLivePreview()"></div>
-                </div>
-
-                <div class="settings-block">
-                  <div class="settings-block-title">Réseaux & liens</div>
-                  <div class="settings-field"><label>GitHub</label><input type="text" id="s-github" placeholder="https://github.com/..." style="font-family:var(--font-mono)"></div>
-                  <div class="settings-field"><label>LinkedIn</label><input type="text" id="s-linkedin" placeholder="https://linkedin.com/in/..." style="font-family:var(--font-mono)"></div>
-                  <div class="settings-field"><label>Portfolio</label><input type="text" id="s-portfolio" placeholder="https://..." style="font-family:var(--font-mono)"></div>
-                </div>
-
-                <div class="settings-block">
-                  <div class="settings-block-title">Spécialité</div>
-                  <div class="settings-field"><label>Domaine principal</label>
-                    <select class="form-input" id="s-specialty">
-                      <option value="web_dev">🌐 Dev Web</option>
-                      <option value="mobile_dev">📱 Dev Mobile</option>
-                      <option value="backend_dev">⚙️ Dev Backend</option>
-                      <option value="fullstack_dev">🧩 Fullstack</option>
-                      <option value="cybersecurity">🛡️ Cybersécurité</option>
-                      <option value="devops">🔧 DevOps</option>
-                      <option value="data">📊 Data</option>
-                      <option value="ai_ml">🤖 IA / ML</option>
-                      <option value="designer_ux">🎨 Designer UX</option>
-                      <option value="recruiter">🧑‍💼 Recruteur tech</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="settings-block">
-                  <div class="settings-block-title">Compétences maîtrisées</div>
-                  <div id="s-skills-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
-                  <div style="display:flex;gap:8px">
-                    <input type="text" class="form-input" id="s-skill-input" placeholder="Node.js, React, Docker..." onkeydown="if(event.key==='Enter'){event.preventDefault();addSkillTag();}">
-                    <button class="btn btn-ghost btn-sm" onclick="addSkillTag()">Ajouter</button>
-                  </div>
-                </div>
-
-                <div class="settings-save-bar">
-                  <button class="btn btn-primary" onclick="saveProfile()">Sauvegarder les modifications</button>
-                  <span style="font-size:12px;color:var(--text-muted)">Les changements sont visibles immédiatement.</span>
-                </div>
-              </div>
-
-              <!-- APERÇU LIVE -->
-              <div class="settings-preview-panel">
-                <div class="settings-preview-title">Aperçu du profil</div>
-                <div class="preview-profile-card">
-                  <div class="preview-banner" id="preview-banner">
-                    <div class="preview-avatar" id="preview-avatar">DC</div>
-                  </div>
-                  <div class="preview-body">
-                    <div class="preview-name" id="preview-name">—</div>
-                    <div class="preview-handle" id="preview-handle">@—</div>
-                    <div id="preview-pronouns" style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);margin-top:2px;display:none"></div>
-                    <div class="preview-bio" id="preview-bio">Aucune bio renseignée.</div>
-                  </div>
-                </div>
-                <div style="margin-top:12px;display:flex;gap:6px">
-                  <button class="btn btn-ghost btn-sm" onclick="removeAvatar()">Supprimer l'avatar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="settings-section" id="settings-compte">
+          <div class="settings-section active" id="settings-compte">
             <div class="settings-page-title">Compte</div>
             <div class="settings-page-sub">Gère tes informations de connexion et ton compte.</div>
 
@@ -3623,179 +2913,6 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
               <button class="btn btn-ghost btn-sm" onclick="changePassword()">Mettre à jour le mot de passe</button>
             </div>
           </div>
-          <div class="settings-section" id="settings-apparence">
-            <div class="settings-page-title">Apparence & profil</div>
-            <div class="settings-page-sub">Personnalise l'apparence de ton profil sur DevConnect.</div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Interface</div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Langue</div><div class="settings-row-sub">Langue de l'interface DevConnect</div></div>
-                <select class="form-input" style="width:140px;padding:6px 10px;font-size:13px"><option>Français</option><option>English</option></select>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Thème de l'interface</div><div class="settings-row-sub">Choisir entre le mode sombre et le mode clair</div></div>
-                <div style="display:flex;gap:6px">
-                  <button class="theme-toggle-btn" id="btn-theme-dark" onclick="setTheme('dark')" style="border-color:var(--border-light)">🌙 Sombre</button>
-                  <button class="theme-toggle-btn" id="btn-theme-light" onclick="setTheme('light')">☀️ Clair</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Bannière de profil</div>
-
-              <!-- GRATUIT : couleur unie -->
-              <div class="settings-row">
-                <div class="settings-row-left">
-                  <div class="settings-row-label">Couleur de bannière <span style="font-size:10px;color:var(--text-muted);background:var(--bg3);border:1px solid var(--border);border-radius:100px;padding:1px 6px;font-family:var(--font-mono)">Gratuit</span></div>
-                  <div class="settings-row-sub">Couleur de fond visible sur ta carte profil</div>
-                </div>
-                <input type="color" id="s-profile-color" value="#0e0e0e" onchange="updateProfileColor(this.value)" style="width:40px;height:32px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:transparent">
-              </div>
-
-              <!-- DEV+ : image statique -->
-              <div id="dev-plus-banner-locked" style="display:none">
-                <div class="settings-row" style="opacity:.45">
-                  <div class="settings-row-left">
-                    <div class="settings-row-label">Image de bannière <span class="premium-badge devplus">Dev+</span></div>
-                    <div class="settings-row-sub">JPG, PNG ou WebP — 3 Mo max.</div>
-                  </div>
-                  <button class="btn btn-ghost btn-sm" onclick="switchSettingsByName('premium-s')">Voir Dev+</button>
-                </div>
-              </div>
-              <div id="dev-plus-banner-unlocked" style="display:none">
-                <div class="settings-row">
-                  <div class="settings-row-left">
-                    <div class="settings-row-label">Image de bannière <span class="premium-badge devplus">Dev+</span></div>
-                    <div class="settings-row-sub">JPG, PNG ou WebP — 3 Mo max.</div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:8px">
-                    <div id="s-banner-preview" style="width:64px;height:24px;border-radius:4px;background:var(--bg3);border:1px solid var(--border);display:inline-block"></div>
-                    <input type="file" id="s-banner-input" accept="image/png,image/jpeg,image/webp" style="display:none" onchange="uploadBanner(this)">
-                    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('s-banner-input').click()">Changer</button>
-                    <button class="btn btn-ghost btn-sm" onclick="removeBanner()">Supprimer</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- DEVCONNECT+ : GIF animé -->
-              <div id="dc-banner-locked" style="display:none">
-                <div class="settings-row" style="opacity:.45">
-                  <div class="settings-row-left">
-                    <div class="settings-row-label">Bannière GIF <span class="premium-badge devconnectplus">DevConnect+</span></div>
-                    <div class="settings-row-sub">GIF animé — 5 Mo max. Remplace l'image statique.</div>
-                  </div>
-                  <button class="btn btn-ghost btn-sm" onclick="switchSettingsByName('premium-s')">Voir DevConnect+</button>
-                </div>
-              </div>
-              <div id="dc-banner-unlocked" style="display:none">
-                <div class="settings-row">
-                  <div class="settings-row-left">
-                    <div class="settings-row-label">Bannière GIF <span class="premium-badge devconnectplus">DevConnect+</span></div>
-                    <div class="settings-row-sub">GIF animé — 5 Mo max. Remplace l'image statique.</div>
-                  </div>
-                  <div>
-                    <input type="file" id="s-banner-gif-input" accept="image/gif" style="display:none" onchange="uploadBannerGif(this)">
-                    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('s-banner-gif-input').click()">Uploader GIF</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- FOND DU SITE : DevConnect+ -->
-            <div class="settings-block">
-              <div class="settings-block-title">Fond du site <span class="premium-badge devconnectplus">DevConnect+</span></div>
-              <div id="site-bg-locked" style="padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center;display:none">
-                <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">🔒 Réservé aux membres DevConnect+</div>
-                <button class="btn btn-ghost btn-sm" onclick="switchSettingsByName('premium-s')">Voir le Premium</button>
-              </div>
-              <div id="site-bg-unlocked" style="display:none">
-                <div style="margin-bottom:8px">
-                  <div class="settings-row-label">Dégradé de fond</div>
-                  <div class="settings-row-sub" style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Mélange 3 couleurs pour personnaliser le fond de l'application</div>
-                  <div class="gradient-picker">
-                    <input type="color" id="grad-color-1" value="#0a0a12" oninput="updateGradientPreview()">
-                    <input type="color" id="grad-color-2" value="#0d0d1e" oninput="updateGradientPreview()">
-                    <input type="color" id="grad-color-3" value="#12101e" oninput="updateGradientPreview()">
-                    <div class="gradient-preview-bar" id="gradient-preview-bar" style="min-width:80px"></div>
-                  </div>
-                  <div style="display:flex;gap:8px;margin-top:10px">
-                    <button class="btn btn-primary btn-sm" onclick="saveSiteGradient()">Appliquer</button>
-                    <button class="btn btn-ghost btn-sm" onclick="clearSiteGradient()">Réinitialiser</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="settings-block" id="dc-plus-card">
-              <div class="settings-block-title">Statut, emoji & widgets <span class="premium-badge devconnectplus">DevConnect+</span></div>
-              <div id="dc-plus-locked" style="display:none;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
-                <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px">🔒 Réservé aux membres DevConnect+</div>
-                <button class="btn btn-ghost btn-sm" onclick="switchSettingsByName('premium-s')">Voir le Premium</button>
-              </div>
-              <div id="dc-plus-unlocked" style="display:none">
-                <div class="settings-field"><label>Statut personnalisé</label><input type="text" id="s-status" maxlength="40" placeholder="Dispo pour collab 🔥"><div style="font-size:11px;color:var(--text-muted);margin-top:4px">40 caractères max</div></div>
-                <div class="settings-field"><label>Emoji personnalisé</label>
-                  <div style="display:flex;align-items:center;gap:12px">
-                    <div id="s-emoji-preview" style="width:40px;height:40px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden"></div>
-                    <div><input type="file" id="s-emoji-input" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none" onchange="uploadEmoji(this)"><button class="btn btn-ghost btn-sm" onclick="document.getElementById('s-emoji-input').click()">Uploader</button><div style="font-size:11px;color:var(--text-muted);margin-top:4px">256 Ko max · GIF autorisé</div></div>
-                  </div>
-                </div>
-                <div class="settings-field"><label>Widgets sur le profil</label>
-                  <div id="widgets-checkbox-list" style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
-                    <div class="settings-row" style="padding:12px 14px"><span style="font-size:13px">📊 Stats (XP, rang, posts)</span><button class="toggle" id="w-stats" onclick="this.classList.toggle('on')"></button></div>
-                    <div class="settings-row" style="padding:12px 14px"><span style="font-size:13px">🏆 Derniers badges</span><button class="toggle" id="w-badges" onclick="this.classList.toggle('on')"></button></div>
-                    <div class="settings-row" style="padding:12px 14px"><span style="font-size:13px">🎮 Travaille actuellement sur...</span><button class="toggle" id="w-activity" onclick="this.classList.toggle('on');toggleWidgetSubfield('activity')"></button></div>
-                    <div id="w-activity-field" style="display:none;padding:8px 14px;background:var(--bg2)"><input type="text" id="s-activity-text" maxlength="60" placeholder="Travaille sur DevConnect 🚀" style="width:100%;padding:8px 12px;background:var(--bg0);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;outline:none"></div>
-                    <div class="settings-row" style="padding:12px 14px;border-bottom:none"><span style="font-size:13px">🌍 Disponibilité mission</span><button class="toggle" id="w-avail" onclick="this.classList.toggle('on');toggleWidgetSubfield('avail')"></button></div>
-                    <div id="w-avail-field" style="display:none;padding:8px 14px;background:var(--bg2)"><select id="s-avail-status" style="width:100%;padding:8px 12px;background:var(--bg0);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;outline:none"><option value="true">Dispo pour mission</option><option value="false">Non disponible</option></select></div>
-                  </div>
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="saveAppearanceExtras()">Sauvegarder</button>
-              </div>
-            </div>
-          </div>
-                    <div class="settings-section" id="settings-notifs">
-            <div class="settings-page-title">Notifications</div>
-            <div class="settings-page-sub">Choisis comment et quand tu veux être notifié.</div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Activité</div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Mentions</div><div class="settings-row-sub">Quand quelqu'un te mentionne dans un message</div></div>
-                <button class="toggle on" id="notif-mentions" onclick="toggleNotifPref(this,'mentions')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Messages directs</div><div class="settings-row-sub">Nouvelles conversations et messages</div></div>
-                <button class="toggle on" id="notif-dms" onclick="toggleNotifPref(this,'dms')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Likes sur mes posts</div><div class="settings-row-sub">Quand quelqu'un like ton contenu</div></div>
-                <button class="toggle on" id="notif-likes" onclick="toggleNotifPref(this,'likes')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Nouveaux follows</div><div class="settings-row-sub">Quand quelqu'un commence à te suivre</div></div>
-                <button class="toggle on" id="notif-follows" onclick="toggleNotifPref(this,'follows')"></button>
-              </div>
-            </div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Plateforme</div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Nouveaux challenges</div><div class="settings-row-sub">Quand un nouveau challenge est disponible</div></div>
-                <button class="toggle on" id="notif-challenges" onclick="toggleNotifPref(this,'challenges')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Offres de recrutement</div><div class="settings-row-sub">Nouvelles offres correspondant à ton profil</div></div>
-                <button class="toggle" id="notif-recruit" onclick="toggleNotifPref(this,'recruit')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Mises à jour DevConnect</div><div class="settings-row-sub">Nouvelles fonctionnalités et annonces</div></div>
-                <button class="toggle on" id="notif-updates" onclick="toggleNotifPref(this,'updates')"></button>
-              </div>
-            </div>
-          </div>
                     <div class="settings-section" id="settings-securite">
             <div class="settings-page-title">Sécurité & confidentialité</div>
             <div class="settings-page-sub">Contrôle la sécurité de ton compte et ta visibilité sur la plateforme.</div>
@@ -3811,54 +2928,6 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
                 <button class="btn btn-ghost btn-sm" onclick="showToast('Gestion des sessions disponible prochainement.','info')">Voir</button>
               </div>
             </div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Confidentialité</div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Profil visible publiquement</div><div class="settings-row-sub">Ton profil est indexable dans la Découverte</div></div>
-                <button class="toggle on" id="toggle-public-profile" onclick="togglePrivacySetting(this,'is_public')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Bloquer les messages directs</div><div class="settings-row-sub">Empêche les autres membres de t'envoyer des DMs</div></div>
-                <button class="toggle" id="toggle-block-dms" onclick="togglePrivacySetting(this,'block_dms')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">Masquer mon XP</div><div class="settings-row-sub">Ton score n'apparaîtra pas dans le classement</div></div>
-                <button class="toggle" id="toggle-hide-xp" onclick="togglePrivacySetting(this,'hide_xp')"></button>
-              </div>
-              <div class="settings-row">
-                <div class="settings-row-left"><div class="settings-row-label">🤝 Disponible pour pair programming</div><div class="settings-row-sub">Affiche un badge "dispo" sur ton profil et dans Découverte</div></div>
-                <button class="toggle" id="toggle-pairing" onclick="togglePrivacySetting(this,'available_for_pairing')"></button>
-              </div>
-            </div>
-          </div>
-                    <div class="settings-section" id="settings-premium-s">
-            <div class="settings-page-title">Premium</div>
-            <div class="settings-page-sub">Le premium est attribué par les administrateurs de DevConnect.</div>
-
-            <div class="premium-status-card" id="premium-status-card">
-              <div class="premium-status-icon">⬡</div>
-              <div class="premium-status-info">
-                <div class="premium-status-name" id="premium-status-name">Membre standard</div>
-                <div class="premium-status-desc" id="premium-status-desc">Aucun abonnement premium actif.</div>
-              </div>
-            </div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">Dev+ — Avantages</div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Bannière de profil personnalisée</div><div class="settings-row-sub">Ajoute une image ou une couleur derrière ton profil</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Couleur de fond du profil</div><div class="settings-row-sub">Personnalise la couleur de ta carte profil</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Commission recrutement réduite</div><div class="settings-row-sub">7% au lieu de 10% sur les transactions</div></div></div>
-            </div>
-
-            <div class="settings-block">
-              <div class="settings-block-title">DevConnect+ — Avantages</div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Tout Dev+ inclus</div><div class="settings-row-sub">Tous les avantages Dev+ sont inclus</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Statut & emoji personnalisé</div><div class="settings-row-sub">Affiche un statut et un emoji custom sur ton profil</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Widgets de profil</div><div class="settings-row-sub">Stats, badges, activité et disponibilité sur ton profil</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Commission 6%</div><div class="settings-row-sub">Commission réduite à 6% sur les transactions</div></div></div>
-              <div class="settings-row"><div class="settings-row-left"><div class="settings-row-label">Priorité dans la Découverte</div><div class="settings-row-sub">Ton profil est mis en avant dans les recherches</div></div></div>
-            </div>
           </div>
                     <div class="settings-section" id="settings-danger">
             <div class="settings-page-title">Zone de danger</div>
@@ -3866,7 +2935,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
 
             <div class="danger-block">
               <div class="danger-block-title">Supprimer mon compte</div>
-              <div class="danger-block-sub">Cette action supprime définitivement ton compte, tes posts, tes messages et toutes tes données. Aucune récupération possible après confirmation.</div>
+              <div class="danger-block-sub">Cette action supprime définitivement ton compte, tes projets Nexus et toutes tes données. Aucune récupération possible après confirmation.</div>
               <button class="btn btn-danger btn-sm" onclick="showToast('Suppression de compte disponible prochainement. Contacte un admin.','error')">Supprimer mon compte</button>
             </div>
 
@@ -3911,26 +2980,37 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
             <div class="nexus-page-title"><svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12.5" fill="none" stroke="rgba(231,233,220,.14)" stroke-width="0.7"/><path d="M14 7.5c3.4 1.6 5 4.3 5 7S16.8 19.8 14 20.5c-2.8-0.7-5-3.3-5-6S10.6 9.1 14 7.5z" fill="none" stroke="rgba(231,233,220,.6)" stroke-width="1.1" stroke-linejoin="round"/><path d="M14 9.2v10.6" stroke="rgba(231,233,220,.3)" stroke-width="0.7" stroke-linecap="round"/><circle cx="14" cy="14" r="1.2" fill="rgba(231,233,220,.85)"/></svg> Dashboard Nexus <span class="live-dot" style="margin-left:4px"></span></div>
             <div class="nexus-page-sub">Surveillance automatisée en temps réel &middot; <span id="nexus-last-refresh">&mdash;</span></div>
             <div class="nexus-stats-row">
-              <div class="nexus-stat"><div class="nexus-stat-val" id="ns-total">&mdash;</div><div class="nexus-stat-label">Events (24h)</div><div class="nexus-stat-delta neutral" id="ns-total-d">chargement...</div></div>
-              <div class="nexus-stat alert-stat"><div class="nexus-stat-val" id="ns-critical">&mdash;</div><div class="nexus-stat-label">Critiques</div><div class="nexus-stat-delta down" id="ns-critical-d">&mdash;</div></div>
-              <div class="nexus-stat"><div class="nexus-stat-val" id="ns-rules-fired">&mdash;</div><div class="nexus-stat-label">Regles actives</div><div class="nexus-stat-delta up" id="ns-rules-d">&mdash;</div></div>
-              <div class="nexus-stat"><div class="nexus-stat-val" id="ns-users-flagged">&mdash;</div><div class="nexus-stat-label">Users flagges</div><div class="nexus-stat-delta neutral" id="ns-users-d">&mdash;</div></div>
+              <div class="nexus-stat">
+                <div class="nx-stat-top"><span class="nx-stat-icon"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h2.6l1.7-5.5L9 14l2-8 1.6 4h2.9"/></svg></span><div class="nexus-stat-label">Events (24h)</div></div>
+                <div class="nexus-stat-val" id="ns-total">&mdash;</div><div class="nexus-stat-delta neutral" id="ns-total-d">chargement...</div>
+              </div>
+              <div class="nexus-stat alert-stat">
+                <div class="nx-stat-top"><span class="nx-stat-icon"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.2 15.5 14.5h-13Z"/><path d="M9 7.5v3.4"/><circle cx="9" cy="12.8" r=".4" fill="currentColor" stroke="none"/></svg></span><div class="nexus-stat-label">Critiques</div></div>
+                <div class="nexus-stat-val" id="ns-critical">&mdash;</div><div class="nexus-stat-delta down" id="ns-critical-d">&mdash;</div>
+              </div>
+              <div class="nexus-stat">
+                <div class="nx-stat-top"><span class="nx-stat-icon"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v4.2M9 7.2C9 9.5 6.5 9.8 6.5 12v3M9 7.2c0 2.3 2.5 2.6 2.5 4.8v3"/><circle cx="9" cy="2.3" r="1"/><circle cx="6.5" cy="15.7" r="1"/><circle cx="11.5" cy="15.7" r="1"/></svg></span><div class="nexus-stat-label">Regles actives</div></div>
+                <div class="nexus-stat-val" id="ns-rules-fired">&mdash;</div><div class="nexus-stat-delta up" id="ns-rules-d">&mdash;</div>
+              </div>
+              <div class="nexus-stat">
+                <div class="nx-stat-top"><span class="nx-stat-icon"><svg width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="6.3" r="2.3"/><path d="M2.3 15c0-2.6 1.9-4.2 4.2-4.2s4.2 1.6 4.2 4.2"/><circle cx="12.8" cy="6.8" r="1.7" opacity=".6"/><path d="M11.8 10.9c1.9.2 3.3 1.6 3.3 4" opacity=".6"/></svg></span><div class="nexus-stat-label">Users flagges</div></div>
+                <div class="nexus-stat-val" id="ns-users-flagged">&mdash;</div><div class="nexus-stat-delta neutral" id="ns-users-d">&mdash;</div>
+              </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 320px;gap:16px">
               <div class="nexus-card">
-                <div class="nexus-card-head"><div class="nexus-card-title"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.35;vertical-align:1px;margin-right:1px"></span> Activite temps reel <span class="live-dot" style="margin-left:4px"></span></div><button class="btn btn-ghost btn-sm" onclick="loadNexusOverview()" style="font-size:11px">&#8635;</button></div>
+                <div class="nexus-card-head"><div class="nexus-card-title"><svg class="nx-vine-mark" width="13" height="13" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="margin-right:5px;vertical-align:-2px"><path d="M2.5 15.5c2-3 2-9 6-11.5 2-1.2 4 .3 3 2-1 1.7-3.3 1-3-1s2.3-3.6 5-2.7"/><circle cx="13.6" cy="2.2" r=".9" fill="currentColor" stroke="none"/></svg>Activite temps reel <span class="live-dot" style="margin-left:4px"></span></div><button class="btn btn-ghost btn-sm" onclick="loadNexusOverview()" style="font-size:11px">&#8635;</button></div>
                 <div class="nexus-realtime-feed" id="nexus-realtime-feed"><div style="text-align:center;padding:32px;color:rgba(231,233,220,.2);font-size:12px;font-family:var(--font-mono)">Chargement...</div></div>
               </div>
               <div style="display:flex;flex-direction:column;gap:16px">
                 <div class="nexus-card">
                   <div class="nexus-card-head"><div class="nexus-card-title"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.35;vertical-align:1px;margin-right:1px"></span> Score de sante</div></div>
-                  <div style="padding:18px">
-                    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px">
-                      <div style="font-family:var(--font-display);font-size:42px;font-weight:700;line-height:1" id="nexus-health-score">&mdash;</div>
-                      <div style="font-family:var(--font-mono);font-size:11px;color:rgba(231,233,220,.3);text-align:right" id="nexus-health-label">analyse...</div>
+                  <div style="padding:18px;display:flex;align-items:center;gap:16px">
+                    <div class="nx-health-ring safe" id="nexus-health-ring" style="--score:0"><div class="nx-health-ring-val" id="nexus-health-score">&mdash;</div></div>
+                    <div style="flex:1;min-width:0">
+                      <div class="nx-health-status" id="nexus-health-label">analyse...</div>
+                      <div style="font-size:11px;color:rgba(27,36,25,.25);font-family:var(--font-mono);line-height:1.4" id="nexus-health-sub">&mdash;</div>
                     </div>
-                    <div class="nexus-score-bar"><div class="nexus-score-fill safe" id="nexus-score-fill" style="width:0%"></div></div>
-                    <div style="font-size:11px;color:rgba(231,233,220,.25);font-family:var(--font-mono);margin-top:8px" id="nexus-health-sub">&mdash;</div>
                   </div>
                 </div>
                 <div class="nexus-card">
@@ -4380,443 +3460,8 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
 
       </div>
     </div>
-
-
-    <div class="app-section" id="section-architect">
-      <div class="module-subnav">
-        <span class="module-subnav-back" onclick="navigate('home')">← Modules</span>
-        <span class="module-subnav-title" style="background:linear-gradient(90deg,#c4b5fd,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Architect</span>
-        <span style="margin-left:auto;font-size:10px;font-family:var(--font-mono);color:var(--text-muted);padding:3px 10px;border:1px solid rgba(139,92,246,.2);border-radius:100px;background:rgba(139,92,246,.06)">⬡ Cover.dev · Accès exclusif</span>
-      </div>
-      <div class="arch-hero">
-        <div class="arch-hero-icon">⬡</div>
-        <div>
-          <div class="arch-hero-title">Vue Architect — DevConnect</div>
-          <div class="arch-hero-sub">Roadmap complète · Statut de chaque module · Features planifiées</div>
-        </div>
-      </div>
-      <div class="arch-metric-row">
-        <div class="arch-metric"><div class="arch-metric-val" style="color:#34d399">4</div><div class="arch-metric-label">Modules live</div></div>
-        <div class="arch-metric"><div class="arch-metric-val" style="color:#a78bfa">4</div><div class="arch-metric-label">Modules bientôt</div></div>
-        <div class="arch-metric"><div class="arch-metric-val">58</div><div class="arch-metric-label">Features planifiées</div></div>
-        <div class="arch-metric"><div class="arch-metric-val">8</div><div class="arch-metric-label">Features live</div></div>
-      </div>
-      <div class="arch-layout">
-        <div class="arch-card">
-          <div class="arch-card-title"><span>✅</span> Modules actifs</div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">👥</div><div><div class="arch-module-name">Teams</div><div class="arch-module-sub">Feed · Messages · DMs · Découverte<span class="arch-feat-count">+14 à venir</span></div></div></div>
-            <span class="arch-status live">Live</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">💻</div><div><div class="arch-module-name">Code</div><div class="arch-module-sub">Éditeur · Snippets · IA Qwen<span class="arch-feat-count">+13 à venir</span></div></div></div>
-            <span class="arch-status live">Live</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">📚</div><div><div class="arch-module-name">Docs</div><div class="arch-module-sub">Challenges · XP · Catégories<span class="arch-feat-count">+10 à venir</span></div></div></div>
-            <span class="arch-status live">Live</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">📊</div><div><div class="arch-module-name">Insight</div><div class="arch-module-sub">Classement · Périodes · Top 20<span class="arch-feat-count">+8 à venir</span></div></div></div>
-            <span class="arch-status live">Live</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">🚀</div><div><div class="arch-module-name">Deploy</div><div class="arch-module-sub">Jobs · Escrow · Commissions<span class="arch-feat-count">+8 à venir</span></div></div></div>
-            <span class="arch-status live">Live</span>
-          </div>
-        </div>
-        <div class="arch-card">
-          <div class="arch-card-title"><span>🔮</span> Modules à venir</div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">🤖</div><div><div class="arch-module-name">DevAI</div><div class="arch-module-sub">Chat IA · Review auto · Tests unitaires<span class="arch-feat-count">4 features</span></div></div></div>
-            <span class="arch-status soon">Bientôt</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">🛡️</div><div><div class="arch-module-name">Nexus</div><div class="arch-module-sub">Scanner vulnérabilités · OWASP · Pentest sandbox<span class="arch-feat-count">4 features</span></div></div></div>
-            <span class="arch-status wip">En cours</span>
-          </div>
-          <div class="arch-module-row">
-            <div class="arch-module-left"><div class="arch-module-icon">🛒</div><div><div class="arch-module-name">Marketplace</div><div class="arch-module-sub">Templates · Thèmes · Plugins · Commissions<span class="arch-feat-count">4 features</span></div></div></div>
-            <span class="arch-status soon">Bientôt</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- DevAI features -->
-      <div class="features-panel open" id="fp-devai-arch" style="margin-top:20px">
-        <div class="features-panel-head" onclick="toggleFeaturesPanel('fp-devai-arch')">
-          <span style="font-size:16px">🤖</span>
-          <span class="features-panel-title">DevAI — Features planifiées</span>
-          <span class="features-panel-badge">4 features</span>
-          <span class="features-panel-toggle">▾</span>
-        </div>
-        <div class="features-grid" style="display:grid">
-          <div class="feature-item soon"><div class="feature-item-icon">💬</div><div><div class="feature-item-name">Chat IA dédié code</div><div class="feature-item-desc">Questions techniques avec contexte de code</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">🔍</div><div><div class="feature-item-name">Revue de code auto</div><div class="feature-item-desc">Analyse et suggestions sur ton code</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">🧪</div><div><div class="feature-item-name">Génération de tests</div><div class="feature-item-desc">Tests unitaires générés automatiquement</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">📖</div><div><div class="feature-item-name">Explication ligne par ligne</div><div class="feature-item-desc">Comprends n'importe quel code en détail</div></div></div>
-        </div>
-      </div>
-
-      <!-- Nexus features -->
-      <div class="features-panel open" id="fp-nexus-arch" style="margin-top:12px">
-        <div class="features-panel-head" onclick="toggleFeaturesPanel('fp-nexus-arch')">
-          <span style="font-size:16px">🛡️</span>
-          <span class="features-panel-title">Nexus — Features planifiées</span>
-          <span class="features-panel-badge">4 features</span>
-          <span class="features-panel-toggle">▾</span>
-        </div>
-        <div class="features-grid" style="display:grid">
-          <div class="feature-item soon"><div class="feature-item-icon">🔬</div><div><div class="feature-item-name">Scanner de vulnérabilités</div><div class="feature-item-desc">Analyse repo ou URL pour détecter les failles</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">📄</div><div><div class="feature-item-name">Rapport de sécurité</div><div class="feature-item-desc">Export PDF du rapport d'analyse</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">⚔️</div><div><div class="feature-item-name">Simulation d'attaque</div><div class="feature-item-desc">Mini pentest en sandbox sécurisée</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">✅</div><div><div class="feature-item-name">Checklist OWASP</div><div class="feature-item-desc">Top 10 OWASP intégré et guidé</div></div></div>
-        </div>
-      </div>
-
-      <!-- Marketplace features -->
-      <div class="features-panel open" id="fp-marketplace-arch" style="margin-top:12px">
-        <div class="features-panel-head" onclick="toggleFeaturesPanel('fp-marketplace-arch')">
-          <span style="font-size:16px">🛒</span>
-          <span class="features-panel-title">Marketplace — Features planifiées</span>
-          <span class="features-panel-badge">4 features</span>
-          <span class="features-panel-toggle">▾</span>
-        </div>
-        <div class="features-grid" style="display:grid">
-          <div class="feature-item soon"><div class="feature-item-icon">💎</div><div><div class="feature-item-name">Vente templates/snippets</div><div class="feature-item-desc">Monétise tes templates et snippets premium</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">🎨</div><div><div class="feature-item-name">Thèmes de profil</div><div class="feature-item-desc">Personnalise l'apparence de ton profil</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">🔌</div><div><div class="feature-item-name">Plugins éditeur</div><div class="feature-item-desc">Extensions pour enrichir l'éditeur de code</div></div></div>
-          <div class="feature-item soon"><div class="feature-item-icon">💰</div><div><div class="feature-item-name">Commissions communautaires</div><div class="feature-item-desc">Système de commission sur les ventes</div></div></div>
-        </div>
-      </div>
-
-      <div class="admin-layout" style="margin-top:28px">
-
-        <!-- SIDEBAR -->
-        <div class="admin-sidebar">
-          <div class="admin-sidebar-header">
-            <div class="admin-sidebar-logo">
-              <svg width="22" height="22" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hBgadm" x1="30" y1="30" x2="130" y2="160" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFD060"/><stop offset="28%" stop-color="#FF9060"/><stop offset="58%" stop-color="#E060C0"/><stop offset="100%" stop-color="#6090FF"/></linearGradient><linearGradient id="hShadm" x1="30" y1="160" x2="130" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#80C8FF" stop-opacity=".45"/><stop offset="55%" stop-color="#C080FF" stop-opacity=".28"/><stop offset="100%" stop-color="#FFD080" stop-opacity=".35"/></linearGradient></defs><rect width="200" height="200" rx="44" fill="#090909"/><g transform="translate(112,52) rotate(8)"><rect width="62" height="100" rx="10" fill="#2E2418" opacity=".9"/></g><g transform="translate(86,44) rotate(4)"><rect width="62" height="100" rx="10" fill="#6B5C38" opacity=".92"/><rect width="62" height="100" rx="10" fill="none" stroke="#8A7448" stroke-width="0.8" opacity=".5"/></g><g transform="translate(48,38) rotate(-4)"><rect width="74" height="116" rx="12" fill="url(#hBgadm)"/><rect width="74" height="116" rx="12" fill="url(#hShadm)"/><rect x="8" y="8" width="58" height="28" rx="6" fill="white" opacity=".13"/><rect x="8" y="90" width="38" height="4" rx="2" fill="white" opacity=".22"/><rect x="8" y="100" width="26" height="4" rx="2" fill="white" opacity=".16"/></g></svg>
-              <div><div class="admin-sidebar-title">Panel</div><div class="admin-sidebar-role" id="admin-welcome-role">Architect</div></div>
-            </div>
-            <div class="admin-live-indicator"><span class="live-dot"></span> Temps réel</div>
-          </div>
-
-          <div class="admin-section-label">Dashboard</div>
-          <div class="admin-nav-item active" onclick="switchAdmin(this,'overview')">
-            <span class="admin-nav-icon">◈</span>Vue d'ensemble
-          </div>
-
-          <div class="admin-section-label">Membres</div>
-          <div class="admin-nav-item" onclick="switchAdmin(this,'users');loadAdminUsers()">
-            <span class="admin-nav-icon">◉</span>Utilisateurs
-            <span class="admin-nav-badge" id="admin-badge-users">—</span>
-          </div>
-          <div class="admin-nav-item" onclick="switchAdmin(this,'tickets');loadAdminTickets()">
-            <span class="admin-nav-icon">◆</span>Tickets
-            <span class="admin-nav-badge" id="admin-badge-tickets">—</span>
-          </div>
-
-          <div class="admin-section-label">Gestion</div>
-          <div class="admin-nav-item" onclick="switchAdmin(this,'premium-a')">
-            <span class="admin-nav-icon">✦</span>Premium
-          </div>
-          <div class="admin-nav-item" onclick="switchAdmin(this,'announce')">
-            <span class="admin-nav-icon">◎</span>Annonces
-          </div>
-
-          <div class="admin-sidebar-sep"></div>
-          <div class="admin-section-label">Système</div>
-          <div class="admin-nav-item" onclick="switchAdmin(this,'logs');loadAdminLogs()">
-            <span class="admin-nav-icon">◇</span>Logs <span class="live-dot" style="margin-left:auto"></span>
-          </div>
-        </div>
-
-        <!-- MAIN -->
-        <div class="admin-main">
-
-          <!-- VUE D'ENSEMBLE -->
-          <div class="admin-section active" id="admin-overview">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Vue d'ensemble <span class="live-dot"></span></div>
-              <div class="admin-page-sub">Statistiques en temps réel · DevConnect</div>
-            </div>
-
-            <div class="admin-stats-grid">
-              <div class="admin-stat-card">
-                <span class="admin-stat-icon">◉</span>
-                <div class="admin-stat-num" id="stat-users">—</div>
-                <div class="admin-stat-label">Utilisateurs</div>
-                <div class="admin-stat-trend up" id="stat-users-trend">chargement...</div>
-              </div>
-              <div class="admin-stat-card">
-                <span class="admin-stat-icon">💬</span>
-                <div class="admin-stat-num" id="stat-messages">—</div>
-                <div class="admin-stat-label">Messages</div>
-                <div class="admin-stat-trend" id="stat-msg-trend">chargement...</div>
-              </div>
-              <div class="admin-stat-card">
-                <span class="admin-stat-icon">✦</span>
-                <div class="admin-stat-num" id="stat-premium">—</div>
-                <div class="admin-stat-label">Premium</div>
-                <div class="admin-stat-trend up" id="stat-prem-trend">chargement...</div>
-              </div>
-              <div class="admin-stat-card">
-                <span class="admin-stat-icon">◆</span>
-                <div class="admin-stat-num" id="stat-tickets">—</div>
-                <div class="admin-stat-label">Tickets ouverts</div>
-                <div class="admin-stat-trend down" id="stat-tick-trend">chargement...</div>
-              </div>
-            </div>
-
-            <div class="admin-activity-grid">
-              <div class="admin-card">
-                <div class="admin-card-header">
-                  <div class="admin-card-title">Derniers inscrits</div>
-                  <button class="btn btn-ghost btn-sm" onclick="switchAdmin(document.querySelectorAll('.admin-nav-item')[1],'users');loadAdminUsers()" style="font-size:11px">Voir tout →</button>
-                </div>
-                <div style="padding:0">
-                  <table class="admin-table-v2">
-                    <thead><tr><th>Membre</th><th>Rôle</th><th>Inscrit le</th></tr></thead>
-                    <tbody id="admin-recent-users"><tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:20px;font-size:13px">Chargement...</td></tr></tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="admin-card">
-                <div class="admin-card-header">
-                  <div class="admin-card-title">Activité récente <span class="live-dot" style="margin-left:6px"></span></div>
-                </div>
-                <div class="admin-card-body" id="admin-recent-logs" style="max-height:260px;overflow-y:auto">
-                  <div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px">Chargement...</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="admin-bottom-grid">
-              <div class="admin-card">
-                <div class="admin-card-header"><div class="admin-card-title">Posts publiés</div></div>
-                <div class="admin-card-body"><div class="admin-bottom-num" id="stat-posts">—</div></div>
-              </div>
-              <div class="admin-card">
-                <div class="admin-card-header"><div class="admin-card-title">XP total distribué</div></div>
-                <div class="admin-card-body"><div class="admin-bottom-num" id="stat-xp-total">—</div></div>
-              </div>
-              <div class="admin-card">
-                <div class="admin-card-header"><div class="admin-card-title">Membres certifiés</div></div>
-                <div class="admin-card-body"><div class="admin-bottom-num" id="stat-certified">—</div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- UTILISATEURS -->
-          <div class="admin-section" id="admin-users">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Utilisateurs</div>
-              <div class="admin-page-sub">Gérer tous les membres de DevConnect</div>
-            </div>
-            <div class="admin-card">
-              <div class="admin-card-header">
-                <div class="admin-card-title">Liste des membres</div>
-                <div style="display:flex;align-items:center;gap:10px">
-                  <div style="display:flex;align-items:center;gap:8px;background:rgba(200,200,216,.05);border:1px solid rgba(200,200,216,.08);border-radius:var(--radius);padding:7px 12px">
-                    <span style="color:var(--text-muted);font-size:13px">⌕</span>
-                    <input style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;width:180px" placeholder="Rechercher..." id="admin-user-search" oninput="searchAdminUsers(this.value)">
-                  </div>
-                  <button class="btn btn-ghost btn-sm" onclick="exportAdminUsersCsv()">⭳ CSV</button>
-                </div>
-              </div>
-              <div style="overflow-x:auto">
-                <table class="admin-table-v2">
-                  <thead><tr><th>Membre</th><th>Rôle</th><th>Premium</th><th>Statut</th><th>XP</th><th>Actions</th></tr></thead>
-                  <tbody id="admin-users-list"><tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:24px">Chargement...</td></tr></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- TICKETS -->
-          <div class="admin-section" id="admin-tickets">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Tickets de modération</div>
-              <div class="admin-page-sub">Signalements et demandes en attente</div>
-            </div>
-            <div class="admin-card">
-              <div class="admin-card-header">
-                <div class="admin-card-title">Tickets</div>
-                <div style="display:flex;gap:6px">
-                  <button class="filter-chip active" onclick="filterTickets(this,'open')">Ouverts</button>
-                  <button class="filter-chip" onclick="filterTickets(this,'claimed')">En cours</button>
-                  <button class="filter-chip" onclick="filterTickets(this,'resolved')">Résolus</button>
-                  <button class="filter-chip" onclick="filterTickets(this,'all')">Tous</button>
-                </div>
-              </div>
-              <div style="overflow-x:auto">
-                <table class="admin-table-v2">
-                  <thead><tr><th>Détail</th><th>Par</th><th>Contre</th><th>Statut</th><th>Actions</th></tr></thead>
-                  <tbody id="admin-tickets-list"><tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">Aucun ticket.</td></tr></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- ANNONCES -->
-          <div class="admin-section" id="admin-announce">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Annonces</div>
-              <div class="admin-page-sub">Affichées en banderole en haut du fil d'actualité pour tous les membres</div>
-            </div>
-            <div class="admin-form-card" style="max-width:600px">
-              <div class="admin-form-title">📣 Nouvelle annonce</div>
-              <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" id="announce-text" rows="3" placeholder="Maintenance prévue ce soir à 22h..."></textarea></div>
-              <button class="btn btn-primary btn-sm" onclick="createAnnouncement()">Publier l'annonce</button>
-            </div>
-            <div class="admin-card" style="margin-top:16px">
-              <div class="admin-card-header"><div class="admin-card-title">Annonces existantes</div></div>
-              <div class="admin-card-body" id="admin-announce-list"><div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px">Chargement...</div></div>
-            </div>
-          </div>
-
-          <!-- PREMIUM -->
-          <div class="admin-section" id="admin-premium-a">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Gestion Premium</div>
-              <div class="admin-page-sub">Attribuer ou retirer les abonnements premium</div>
-            </div>
-            <div class="admin-form-card" style="max-width:500px">
-              <div class="admin-form-title">✦ Attribuer le premium</div>
-              <div class="admin-form-grid" style="margin-bottom:14px">
-                <div class="form-group" style="margin:0"><label class="form-label">Pseudo</label><input type="text" class="form-input form-input-mono" id="premium-username" placeholder="pseudo_utilisateur"></div>
-                <div class="form-group" style="margin:0"><label class="form-label">Niveau</label><div class="cdrop" id="premium-tier-select-cdrop" data-id="premium-tier-select">
-                  <input type="hidden" id="premium-tier-select" value="dev-plus">
-                  <div class="cdrop-trigger" tabindex="0" onclick="toggleCustomDropdown('premium-tier-select')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCustomDropdown('premium-tier-select')}">
-                    <span class="cdrop-trigger-label" id="premium-tier-select-label">Dev+</span>
-                    <span class="cdrop-trigger-arrow"></span>
-                  </div>
-                  <div class="cdrop-menu">
-                    <div class="cdrop-option selected" data-value="dev-plus" onclick="selectCustomDropdown('premium-tier-select','dev-plus')">Dev+</div>
-                    <div class="cdrop-option" data-value="devconnect-plus" onclick="selectCustomDropdown('premium-tier-select','devconnect-plus')">DevConnect+</div>
-                    <div class="cdrop-option" data-value="none" onclick="selectCustomDropdown('premium-tier-select','none')">Retirer</div>
-                  </div>
-                </div></div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="grantPremium()">Appliquer</button>
-            </div>
-          </div>
-
-          <!-- LOGS -->
-          <div class="admin-section" id="admin-logs">
-            <div class="admin-page-header">
-              <div class="admin-page-title">Logs d'activité <span class="live-dot"></span></div>
-              <div class="admin-page-sub">Historique de toutes les actions effectuées par le staff</div>
-            </div>
-            <div class="admin-card">
-              <div class="admin-card-header">
-                <div class="admin-card-title">Journal</div>
-                <button class="btn btn-ghost btn-sm" onclick="loadAdminLogs()" style="font-size:11px">↻ Rafraîchir</button>
-              </div>
-              <div class="admin-card-body" id="admin-logs-list" style="max-height:500px;overflow-y:auto">
-                <div style="text-align:center;color:var(--text-muted);font-size:13px;padding:20px">Chargement...</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
-
-<!-- CHALLENGE MODAL -->
-<div class="modal-overlay" id="challenge-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <div><div class="modal-title" id="challenge-modal-title">Challenge</div><div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);margin-top:3px" id="challenge-modal-meta"></div></div>
-      <button class="modal-close" onclick="closeChallenge()">×</button>
-    </div>
-    <div class="modal-body">
-      <div id="challenge-modal-desc" style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px"></div>
-      <div id="challenge-hints" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:16px;font-size:13px;color:var(--text-secondary)"></div>
-      <label class="form-label">Ta réponse</label>
-      <input type="text" class="modal-answer-input" id="challenge-answer" placeholder="Entre ta réponse ici..." onkeydown="if(event.key==='Enter')submitChallenge()">
-      <div id="challenge-feedback" style="margin-top:10px;font-size:13px;display:none"></div>
-      <button class="btn btn-primary" style="margin-top:16px" onclick="submitChallenge()">Soumettre</button>
-      <div id="solutions-area" style="display:none">
-        <div style="font-size:14px;font-weight:500;margin:24px 0 12px;padding-top:20px;border-top:1px solid var(--border)">Solutions de la communauté (top 10)</div>
-        <div id="solutions-list"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- JOB POST MODAL -->
-<div class="modal-overlay" id="job-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">Publier une offre</div>
-      <button class="modal-close" onclick="closeJobModal()">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">Titre du poste</label><input type="text" class="form-input" id="job-title" placeholder="Développeur React Senior"></div>
-      <div class="form-group"><label class="form-label">Entreprise / Contexte</label><input type="text" class="form-input" id="job-company" placeholder="TechCorp SAS · Paris (Remote OK)"></div>
-      <div class="form-group"><label class="form-label">Budget</label><input type="text" class="form-input" id="job-budget" placeholder="2 400€/sem ou 4 000€ forfait"></div>
-      <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="job-desc" rows="4" placeholder="Décris la mission..."></textarea></div>
-      <div class="form-group"><label class="form-label">Tags (séparés par des virgules)</label><input type="text" class="form-input" id="job-tags" placeholder="React, TypeScript, Remote"></div>
-      <button class="btn btn-primary w-full" onclick="publishJob()">Publier l'offre</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADD/EDIT SNIPPET MODAL -->
-<div class="modal-overlay" id="snippet-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title" id="snippet-modal-title">Publier un snippet</div>
-      <button class="modal-close" onclick="closeSnippetModal()">×</button>
-    </div>
-    <div class="modal-body">
-      <input type="hidden" id="snip-edit-id" value="">
-      <div class="form-group"><label class="form-label">Titre</label><input type="text" class="form-input" id="snip-title" placeholder="Debounce function réutilisable"></div>
-      <div class="form-group"><label class="form-label">Langage</label>
-        <select class="form-input" id="snip-lang">
-          <option value="javascript">JavaScript</option>
-          <option value="python">Python</option>
-          <option value="css">CSS</option>
-          <option value="html">HTML</option>
-          <option value="sql">SQL</option>
-          <option value="other">Autre</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Code</label><textarea class="form-input" id="snip-code" rows="8" style="font-family:var(--font-mono);font-size:12px" placeholder="Colle ton code ici..."></textarea></div>
-      <div class="form-group"><label class="form-label">Description (optionnel)</label><textarea class="form-input" id="snip-desc" rows="2" placeholder="À quoi ça sert ?"></textarea></div>
-      <div class="form-group"><label class="form-label">Tags (séparés par des virgules)</label><input type="text" class="form-input" id="snip-tags" placeholder="utils, performance, react"></div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost" style="flex:0 0 auto" onclick="testRunSnippet()">▶ Tester</button>
-        <button class="btn btn-primary" style="flex:1" id="snippet-save-btn" onclick="saveSnippet()">Publier</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SNIPPET RUN MODAL (live execution sandbox) -->
-<div class="modal-overlay" id="snippet-run-modal">
-  <div class="modal" style="max-width:640px;width:90vw">
-    <div class="modal-header">
-      <div class="modal-title">▶ Exécution — <span id="snippet-run-title" style="font-family:var(--font-mono);font-size:14px;color:var(--text-secondary)"></span></div>
-      <button class="modal-close" onclick="closeSnippetRunModal()">×</button>
-    </div>
-    <div class="modal-body" style="padding:0">
-      <iframe id="snippet-run-iframe" sandbox="allow-scripts" style="width:100%;height:280px;border:none;background:#fff;display:block"></iframe>
-      <div style="border-top:1px solid var(--border);background:var(--bg0);padding:10px 14px">
-        <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Console</div>
-        <div id="snippet-run-console" style="font-family:var(--font-mono);font-size:12px;max-height:160px;overflow:auto;color:var(--text-secondary)">
-          <div style="color:var(--text-muted)">En attente d'exécution...</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- SNIPPET SHARE MODAL -->
 <div class="modal-overlay" id="snippet-share-modal">
   <div class="modal" style="max-width:440px">
@@ -5050,8 +3695,7 @@ window.addEventListener('load',async()=>{
     else if(event==='SIGNED_OUT'){currentUser=null;currentProfile=null;showPage('landing');}
   });
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){closeSearch();closeChallenge();closeCmdk();if(document.body.classList.contains('focus-mode'))toggleFocusMode();}
-    if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){e.preventDefault();openSearch();}
+    if(e.key==='Escape'){closeChallenge();closeCmdk();if(document.body.classList.contains('focus-mode'))toggleFocusMode();}
     if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCmdk();}
   });
   initKeyboard();
@@ -5336,45 +3980,8 @@ function updateNavAvatar(){
 }
 
 function updateProfileSection(){
-  if(!currentProfile)return;
-  const p=currentProfile;
-  const specLabels={web_dev:'Dev Web',mobile_dev:'Dev Mobile',backend_dev:'Dev Backend',fullstack_dev:'Fullstack',cybersecurity:'Cybersécurité',devops:'DevOps',data:'Data',ai_ml:'IA / ML',designer_ux:'Designer UX',recruiter:'Recruteur tech'};
-  setEl('profile-display-name',p.display_name||p.username||'Utilisateur');
-  setEl('profile-username-display','@'+(p.username||''));
-  setEl('profile-bio-display',p.bio||'Aucune bio renseignée.');
-  setEl('profile-xp',p.xp||0);
-  setEl('profile-streak',p.streak||0);
-  if(p.specialty)setEl('profile-specialty-badge',specLabels[p.specialty]||p.specialty);
-  if(p.github_url){const el=document.getElementById('profile-github-link');if(el){el.href=safeUrl(p.github_url);el.style.display='inline-flex';}}
-  if(p.linkedin_url){const el=document.getElementById('profile-linkedin-link');if(el){el.href=safeUrl(p.linkedin_url);el.style.display='inline-flex';}}
-  if(p.portfolio_url){const el=document.getElementById('profile-portfolio-link');if(el){el.href=safeUrl(p.portfolio_url);el.style.display='inline-flex';}}
-
-  const init=(p.username||'DC').substring(0,2).toUpperCase();
-  document.getElementById('profile-avatar-big').innerHTML=avatarHtml(p.avatar_url,init);
-
-  const banner=document.getElementById('profile-banner');
-  if(isDevPlus()&&p.banner_url){banner.style.background=`url('${safeUrl(p.banner_url)}') center/cover no-repeat`;}
-  else if(isDevPlus()&&p.banner_gradient){const g=String(p.banner_gradient||'');if(/^linear-gradient\(/.test(g)||/^radial-gradient\(/.test(g))banner.style.background=g;}
-  else if(isDevPlus()&&p.profile_color){const c=safeCssColor(p.profile_color);if(c)banner.style.background=c;}
-  else{banner.style.background='linear-gradient(135deg,var(--bg3),var(--bg2))';}
-
-  // Pronoms
-  const pronounsEl=document.getElementById('profile-pronouns-display');
-  if(pronounsEl){if(p.pronouns){pronounsEl.textContent=p.pronouns;pronounsEl.style.display='block';}else{pronounsEl.style.display='none';}}
-
-  // Badge rôle inline
-  const roleEl=document.getElementById('profile-role-badge');
-  if(roleEl&&p.role){roleEl.className=`role-badge-profile ${p.role}`;roleEl.textContent=ROLE_LABELS[p.role]||p.role;roleEl.style.display='inline-flex';}
-
-  const pill=document.getElementById('profile-status-pill');
-  if(isDevConnectPlus()&&p.status_text){pill.style.display='inline-flex';pill.textContent='';
-    if(p.custom_emoji_url){const img=document.createElement('img');img.src=p.custom_emoji_url;img.className='profile-emoji-img';pill.appendChild(img);}
-    pill.appendChild(document.createTextNode(p.status_text));
-  }else{pill.style.display='none';}
-
-  renderProfileWidgets(p);
-  renderBadgesTab(p);
-  updateLivePreview();
+  // La page "Mon profil" (sociale) a été retirée — Nexus n'en a plus besoin.
+  return;
 }
 
 function renderProfileWidgets(p){
@@ -5463,67 +4070,9 @@ function notifPrefEnabled(key){
 function updateSettingsSection(){
   if(!currentProfile)return;
   const p=currentProfile;
-  setVal('s-username',p.username||'');setVal('s-bio',p.bio||'');setVal('s-title',p.title||'');
-  setVal('s-displayname',p.display_name||p.username||'');
-  setVal('s-github',p.github_url||'');setVal('s-linkedin',p.linkedin_url||'');setVal('s-portfolio',p.portfolio_url||'');
-  setVal('s-pronouns',p.pronouns||'');
-  setVal('s-specialty',p.specialty||'web_dev');
-  currentSkills=Array.isArray(p.tech_stack)?[...p.tech_stack]:[];
-  renderSkillTags();
   setEl('s-email-display',currentUser.email||'—');
   setEl('s-since',new Date(p.created_at).toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'numeric'}));
   setEl('s-userid',currentUser.id||'—');
-  setEl('s-avatar-username',p.username||'—');
-  setEl('s-avatar-role',ROLE_LABELS[p.role]||p.role||'Membre');
-  updatePremiumStatus();
-
-  const init=(p.username||'DC').substring(0,2).toUpperCase();
-  document.getElementById('s-avatar-preview').innerHTML=avatarHtml(p.avatar_url,init);
-
-  const devPlus=isDevPlus(),dcPlus=isDevConnectPlus();
-  document.getElementById('dc-plus-locked').style.display=dcPlus?'none':'block';
-  document.getElementById('dc-plus-unlocked').style.display=dcPlus?'block':'none';
-
-  setVal('s-profile-color',p.profile_color||'#0e0e0e');
-
-  // Banner Dev+
-  document.getElementById('dev-plus-banner-locked').style.display=devPlus?'none':'block';
-  document.getElementById('dev-plus-banner-unlocked').style.display=devPlus?'block':'none';
-  // Banner GIF DevConnect+
-  document.getElementById('dc-banner-locked').style.display=dcPlus?'none':'block';
-  document.getElementById('dc-banner-unlocked').style.display=dcPlus?'block':'none';
-  // Fond du site DevConnect+
-  document.getElementById('site-bg-locked').style.display=dcPlus?'none':'block';
-  document.getElementById('site-bg-unlocked').style.display=dcPlus?'block':'none';
-
-  if(devPlus){
-    const bPrev=document.getElementById('s-banner-preview');
-    if(bPrev)bPrev.style.background=p.banner_url?`url('${safeUrl(p.banner_url)}') center/cover`:'var(--bg2)';
-  }
-  // Init gradient
-  const savedGrad=localStorage.getItem('dc_site_gradient');
-  if(savedGrad){
-    try{const g=JSON.parse(savedGrad);setVal('grad-color-1',g[0]);setVal('grad-color-2',g[1]);setVal('grad-color-3',g[2]);}catch(e){}
-  }
-  updateGradientPreview();
-  if(dcPlus){
-    setVal('s-status',p.status_text||'');
-    document.getElementById('s-emoji-preview').innerHTML=p.custom_emoji_url?`<img src="${esc(p.custom_emoji_url)}" style="width:100%;height:100%;object-fit:contain">`:'';
-    const w=p.widgets&&typeof p.widgets==='object'&&!Array.isArray(p.widgets)?p.widgets:{};
-    const enabled=w.enabled||[];
-    ['stats','badges','activity','avail'].forEach(k=>{document.getElementById('w-'+k).classList.toggle('on',enabled.includes(k));});
-    setVal('s-activity-text',w.activity_text||'');
-    if(w.available!==undefined&&w.available!==null)setVal('s-avail-status',String(w.available));
-    toggleWidgetSubfield('activity');toggleWidgetSubfield('avail');
-  }
-  // Sync privacy toggles with actual saved values
-  const tog=(id,val)=>{const el=document.getElementById(id);if(el){el.classList.toggle('on',!!val);}};
-  tog('toggle-public-profile',currentProfile.is_public!==false);
-  tog('toggle-block-dms',!!currentProfile.block_dms);
-  tog('toggle-hide-xp',!!currentProfile.hide_xp);
-  tog('toggle-pairing',!!currentProfile.available_for_pairing);
-  // Sync notif prefs (saved in localStorage for immediate responsiveness)
-  syncNotifToggles();
 }
 
 function switchSettingsByName(s){
@@ -6803,8 +5352,10 @@ async function removeAvatar() {
 function setTheme(theme) {
   document.documentElement.classList.toggle('light', theme === 'light');
   localStorage.setItem('dc_theme', theme);
-  document.getElementById('btn-theme-dark').style.borderColor = theme === 'dark' ? 'var(--border-light)' : 'var(--border)';
-  document.getElementById('btn-theme-light').style.borderColor = theme === 'light' ? 'var(--border-light)' : 'var(--border)';
+  const btnDark = document.getElementById('btn-theme-dark');
+  const btnLight = document.getElementById('btn-theme-light');
+  if (btnDark) btnDark.style.borderColor = theme === 'dark' ? 'var(--border-light)' : 'var(--border)';
+  if (btnLight) btnLight.style.borderColor = theme === 'light' ? 'var(--border-light)' : 'var(--border)';
 }
 
 function initTheme() {
@@ -9259,26 +7810,15 @@ function switchAdmin(el,section){
 }
 
 // SETTINGS & TABS
-function switchSettings(el,s){document.querySelectorAll('.settings-nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.settings-section').forEach(x=>x.classList.remove('active'));document.getElementById('settings-'+s)?.classList.add('active');if(s==='premium-s')updatePremiumStatus();}
+function switchSettings(el,s){document.querySelectorAll('.settings-nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.settings-section').forEach(x=>x.classList.remove('active'));document.getElementById('settings-'+s)?.classList.add('active');}
 // (switchProfileTab — voir définition unique plus haut, ce doublon cassait les onglets Projets/Badges/Stats)
 
 // ---- COMMAND PALETTE (⌘K) ----
 const CMDK_COMMANDS=[
-  {label:'Aller à Home',icon:'🏠',run:()=>navigate('home')},
-  {label:'Aller à Teams — Feed',icon:'💬',run:()=>navigate('feed')},
-  {label:'Aller à Teams — Messages',icon:'💬',run:()=>navigate('messages')},
-  {label:'Aller à Teams — Discover',icon:'💬',run:()=>navigate('discover')},
-  {label:'Aller à Docs (Learn)',icon:'📚',run:()=>navigate('learn')},
-  {label:'Aller à Insight (Ranking)',icon:'📊',run:()=>navigate('ranking')},
-  {label:'Aller à Deploy (Recruit)',icon:'🚀',run:()=>navigate('recruit')},
-  {label:'Aller à Code — Éditeur',icon:'💻',run:()=>navigate('editor')},
-  {label:'Aller à Code — Snippets',icon:'💻',run:()=>navigate('snippets')},
-  {label:'Aller à mon profil',icon:'◆',run:()=>navigate('profile')},
-  {label:'Publier un snippet',icon:'+',run:()=>{navigate('snippets');setTimeout(openAddSnippetModal,150);}},
-  {label:'Publier une offre',icon:'+',run:()=>{navigate('recruit');setTimeout(openJobModal,150);}},
+  {label:'Aller à Nexus',icon:'◈',run:()=>navigate('nexus')},
+  {label:'Ouvrir les paramètres',icon:'⚙',run:()=>navigate('settings')},
   {label:'Ouvrir les notifications',icon:'🔔',run:()=>toggleNotifDropdown()},
   {label:'Basculer le mode Focus',icon:'◎',run:()=>toggleFocusMode()},
-  {label:'Rechercher (profils, projets, channels)',icon:'⌕',run:()=>openSearch()},
 ];
 function openCmdk(){
   document.getElementById('cmdk-modal').classList.add('show');
@@ -10051,12 +8591,12 @@ async function loadNexusOverview(){
   let score=100-criticalCount*8-Math.max(0,logs24h.length-20)*1;
   score=Math.max(0,Math.min(100,score));
   setEl('nexus-health-score',score);
-  const scoreFill=document.getElementById('nexus-score-fill');
+  const scoreRing=document.getElementById('nexus-health-ring');
   const healthLabel=document.getElementById('nexus-health-label');
   const healthSub=document.getElementById('nexus-health-sub');
-  if(scoreFill){
-    scoreFill.style.width=score+'%';
-    scoreFill.className='nexus-score-fill '+(score>=75?'safe':score>=45?'warn':'danger');
+  if(scoreRing){
+    scoreRing.style.setProperty('--score',score);
+    scoreRing.className='nx-health-ring '+(score>=75?'safe':score>=45?'warn':'danger');
   }
   if(healthLabel)healthLabel.textContent=score>=75?'Sain':score>=45?'Vigilance':'Critique';
   if(healthSub)healthSub.textContent=criticalCount+' événement(s) sensible(s) sur 24h';
