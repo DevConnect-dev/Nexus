@@ -45,7 +45,7 @@
 }
 </script>
 <meta name="theme-color" content="#080810">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='hF' x1='30' y1='30' x2='130' y2='160' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23FFD060'/%3E%3Cstop offset='28%25' stop-color='%23FF9060'/%3E%3Cstop offset='58%25' stop-color='%23E060C0'/%3E%3Cstop offset='100%25' stop-color='%236090FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='44' fill='%23090909'/%3E%3Cg transform='translate(112%2C52) rotate(8)'%3E%3Crect width='62' height='100' rx='10' fill='%232E2418' opacity='.9'/%3E%3C/g%3E%3Cg transform='translate(86%2C44) rotate(4)'%3E%3Crect width='62' height='100' rx='10' fill='%236B5C38' opacity='.92'/%3E%3C/g%3E%3Cg transform='translate(48%2C38) rotate(-4)'%3E%3Crect width='74' height='116' rx='12' fill='url(%23hF)'/%3E%3Crect x='8' y='8' width='58' height='28' rx='6' fill='white' opacity='.13'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg width='32' height='32' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'><defs><linearGradient id='thornFav' x1='30' y1='170' x2='170' y2='30' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='#6FCB53'/><stop offset='1' stop-color='#B8F08A'/></linearGradient></defs><rect width='200' height='200' rx='40' fill='#0E140F'/><path d='M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44' fill='none' stroke='url(%23thornFav)' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/><path d='M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148' fill='none' stroke='url(%23thornFav)' stroke-width='3.5' stroke-linecap='round'/><polygon points='52,132 32,124 51,140' fill='url(%23thornFav)'/><polygon points='56,108 76,100 57,118' fill='url(%23thornFav)'/><polygon points='54,84 34,78 53,92' fill='url(%23thornFav)'/><polygon points='72,80 66,64 82,76' fill='url(%23thornFav)'/><polygon points='100,98 116,86 103,108' fill='url(%23thornFav)'/><polygon points='127,118 147,112 128,128' fill='url(%23thornFav)'/><polygon points='146,100 164,92 145,110' fill='url(%23thornFav)'/><polygon points='147,68 129,60 146,80' fill='url(%23thornFav)'/><ellipse cx='63' cy='70' rx='7' ry='3.2' fill='url(%23thornFav)' transform='rotate(-38 63 70)'/><circle cx='53' cy='158' r='7' fill='url(%23thornFav)'/><circle cx='56' cy='44' r='6' fill='url(%23thornFav)'/><circle cx='146' cy='144' r='6' fill='url(%23thornFav)'/><circle cx='146' cy='44' r='7' fill='url(%23thornFav)'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
@@ -1450,6 +1450,23 @@ body.focus-mode #focus-exit-btn{display:flex;}
 .nexus-setting-sub{font-size:11px;color:rgba(27,36,25,.3);font-family:var(--font-mono);margin-top:2px;}
 .nexus-tag{display:inline-flex;align-items:center;padding:1px 8px;border-radius:100px;font-size:10px;font-family:var(--font-mono);background:rgba(27,36,25,.06);border:1px solid rgba(27,36,25,.08);color:rgba(27,36,25,.5);}
 
+/* ===== NEXUS ROADMAP ===== */
+.rm-legend{font-size:10.5px;font-family:var(--font-mono);padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em;}
+.rm-list{padding:6px 20px 16px;}
+.rm-item{padding:12px 0;border-bottom:1px solid var(--nx-line,rgba(27,36,25,.05));}
+.rm-item:last-child{border-bottom:none;}
+.rm-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;flex-wrap:wrap;}
+.rm-item-name{font-size:13px;font-weight:500;color:var(--nx-text,var(--text));}
+.rm-item-desc{font-size:12px;line-height:1.6;color:var(--nx-mute,var(--text-muted));}
+.rm-badge{flex-shrink:0;font-size:10px;font-family:var(--font-mono);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+.rm-b-green{background:rgba(143,214,107,.14);color:#4f7a3a;border:1px solid rgba(143,214,107,.26);}
+.rm-b-amber{background:rgba(224,150,90,.15);color:#9a5f28;border:1px solid rgba(224,150,90,.28);}
+.rm-b-violet{background:rgba(139,92,246,.14);color:#6d4fc9;border:1px solid rgba(139,92,246,.26);}
+#page-app #section-nexus .rm-b-green{color:#8FD66B;background:rgba(143,214,107,.12);border-color:rgba(143,214,107,.24);}
+#page-app #section-nexus .rm-b-amber{color:#E8916F;background:rgba(232,145,111,.12);border-color:rgba(232,145,111,.24);}
+#page-app #section-nexus .rm-b-violet{color:#b39dff;background:rgba(139,92,246,.14);border-color:rgba(139,92,246,.26);}
+#page-app #section-nexus .rm-legend{border-color:var(--nx-line) !important;}
+
 /* ===== NEXUS CYBER DEFENSE — EXTENSIONS ===== */
 /* Threat Intel */
 .nexus-threat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
@@ -2522,7 +2539,7 @@ body.focus-mode #focus-exit-btn{display:flex;}
 <!-- Nav -->
 <nav class="dcf-nav" id="landing-nav">
   <a href="#" class="dcf-logo" onclick="return false">
-    <svg width="30" height="30" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M55,150 L55,50 L145,150 L145,50" fill="none" stroke="#8FD66B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55" cy="50" r="9" fill="#8FD66B"/><circle cx="55" cy="150" r="9" fill="#8FD66B"/><circle cx="145" cy="50" r="9" fill="#8FD66B"/><circle cx="145" cy="150" r="9" fill="#8FD66B"/></svg>
+    <svg width="30" height="30" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="thornGrad1" x1="30" y1="170" x2="170" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6FCB53"/><stop offset="1" stop-color="#B8F08A"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44" fill="none" stroke="url(#thornGrad1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148" fill="none" stroke="url(#thornGrad1)" stroke-width="3.5" stroke-linecap="round"/><polygon points="52,132 32,124 51,140" fill="url(#thornGrad1)"/><polygon points="56,108 76,100 57,118" fill="url(#thornGrad1)"/><polygon points="54,84 34,78 53,92" fill="url(#thornGrad1)"/><polygon points="72,80 66,64 82,76" fill="url(#thornGrad1)"/><polygon points="100,98 116,86 103,108" fill="url(#thornGrad1)"/><polygon points="127,118 147,112 128,128" fill="url(#thornGrad1)"/><polygon points="146,100 164,92 145,110" fill="url(#thornGrad1)"/><polygon points="147,68 129,60 146,80" fill="url(#thornGrad1)"/><ellipse cx="63" cy="70" rx="7" ry="3.2" fill="url(#thornGrad1)" transform="rotate(-38 63 70)"/><circle cx="53" cy="158" r="7" fill="url(#thornGrad1)"/><circle cx="56" cy="44" r="6" fill="url(#thornGrad1)"/><circle cx="146" cy="144" r="6" fill="url(#thornGrad1)"/><circle cx="146" cy="44" r="7" fill="url(#thornGrad1)"/></svg>
     <span>Nexus</span>
   </a>
   <ul class="dcf-nav-links">
@@ -2677,7 +2694,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
 <!-- Footer -->
 <footer class="dcf-footer">
   <a href="#" class="dcf-logo" onclick="return false">
-    <svg width="26" height="26" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M55,150 L55,50 L145,150 L145,50" fill="none" stroke="#8FD66B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55" cy="50" r="9" fill="#8FD66B"/><circle cx="55" cy="150" r="9" fill="#8FD66B"/><circle cx="145" cy="50" r="9" fill="#8FD66B"/><circle cx="145" cy="150" r="9" fill="#8FD66B"/></svg>
+    <svg width="26" height="26" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="thornGrad2" x1="30" y1="170" x2="170" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6FCB53"/><stop offset="1" stop-color="#B8F08A"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44" fill="none" stroke="url(#thornGrad2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148" fill="none" stroke="url(#thornGrad2)" stroke-width="3.5" stroke-linecap="round"/><polygon points="52,132 32,124 51,140" fill="url(#thornGrad2)"/><polygon points="56,108 76,100 57,118" fill="url(#thornGrad2)"/><polygon points="54,84 34,78 53,92" fill="url(#thornGrad2)"/><polygon points="72,80 66,64 82,76" fill="url(#thornGrad2)"/><polygon points="100,98 116,86 103,108" fill="url(#thornGrad2)"/><polygon points="127,118 147,112 128,128" fill="url(#thornGrad2)"/><polygon points="146,100 164,92 145,110" fill="url(#thornGrad2)"/><polygon points="147,68 129,60 146,80" fill="url(#thornGrad2)"/><ellipse cx="63" cy="70" rx="7" ry="3.2" fill="url(#thornGrad2)" transform="rotate(-38 63 70)"/><circle cx="53" cy="158" r="7" fill="url(#thornGrad2)"/><circle cx="56" cy="44" r="6" fill="url(#thornGrad2)"/><circle cx="146" cy="144" r="6" fill="url(#thornGrad2)"/><circle cx="146" cy="44" r="7" fill="url(#thornGrad2)"/></svg>
     <span>Nexus</span>
   </a>
   <nav class="dcf-footer-links">
@@ -2753,7 +2770,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
 <div id="page-auth" class="page">
   <div class="auth-container">
     <div class="auth-box">
-      <div class="auth-logo"><div class="logo-mark"><svg width="34" height="34" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M55,150 L55,50 L145,150 L145,50" fill="none" stroke="#8FD66B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55" cy="50" r="9" fill="#8FD66B"/><circle cx="55" cy="150" r="9" fill="#8FD66B"/><circle cx="145" cy="50" r="9" fill="#8FD66B"/><circle cx="145" cy="150" r="9" fill="#8FD66B"/></svg></div><span style="font-family:var(--font-display);font-weight:600;font-size:16px">Nexus</span></div>
+      <div class="auth-logo"><div class="logo-mark"><svg width="34" height="34" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="thornGrad3" x1="30" y1="170" x2="170" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6FCB53"/><stop offset="1" stop-color="#B8F08A"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44" fill="none" stroke="url(#thornGrad3)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148" fill="none" stroke="url(#thornGrad3)" stroke-width="3.5" stroke-linecap="round"/><polygon points="52,132 32,124 51,140" fill="url(#thornGrad3)"/><polygon points="56,108 76,100 57,118" fill="url(#thornGrad3)"/><polygon points="54,84 34,78 53,92" fill="url(#thornGrad3)"/><polygon points="72,80 66,64 82,76" fill="url(#thornGrad3)"/><polygon points="100,98 116,86 103,108" fill="url(#thornGrad3)"/><polygon points="127,118 147,112 128,128" fill="url(#thornGrad3)"/><polygon points="146,100 164,92 145,110" fill="url(#thornGrad3)"/><polygon points="147,68 129,60 146,80" fill="url(#thornGrad3)"/><ellipse cx="63" cy="70" rx="7" ry="3.2" fill="url(#thornGrad3)" transform="rotate(-38 63 70)"/><circle cx="53" cy="158" r="7" fill="url(#thornGrad3)"/><circle cx="56" cy="44" r="6" fill="url(#thornGrad3)"/><circle cx="146" cy="144" r="6" fill="url(#thornGrad3)"/><circle cx="146" cy="44" r="7" fill="url(#thornGrad3)"/></svg></div><span style="font-family:var(--font-display);font-weight:600;font-size:16px">Nexus</span></div>
       <!-- LOGIN -->
       <div id="auth-login">
         <div class="auth-title">Bon retour 👋</div>
@@ -2845,7 +2862,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
 <!-- APP PAGE -->
 <div id="page-app" class="page">
   <nav class="topnav">
-    <a href="#" class="topnav-logo" onclick="navigate('nexus');return false"><div class="logo-mark"><svg width="34" height="34" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M55,150 L55,50 L145,150 L145,50" fill="none" stroke="#8FD66B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55" cy="50" r="9" fill="#8FD66B"/><circle cx="55" cy="150" r="9" fill="#8FD66B"/><circle cx="145" cy="50" r="9" fill="#8FD66B"/><circle cx="145" cy="150" r="9" fill="#8FD66B"/></svg></div>Nexus</a>
+    <a href="#" class="topnav-logo" onclick="navigate('nexus');return false"><div class="logo-mark"><svg width="34" height="34" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="thornGrad4" x1="30" y1="170" x2="170" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6FCB53"/><stop offset="1" stop-color="#B8F08A"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44" fill="none" stroke="url(#thornGrad4)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148" fill="none" stroke="url(#thornGrad4)" stroke-width="3.5" stroke-linecap="round"/><polygon points="52,132 32,124 51,140" fill="url(#thornGrad4)"/><polygon points="56,108 76,100 57,118" fill="url(#thornGrad4)"/><polygon points="54,84 34,78 53,92" fill="url(#thornGrad4)"/><polygon points="72,80 66,64 82,76" fill="url(#thornGrad4)"/><polygon points="100,98 116,86 103,108" fill="url(#thornGrad4)"/><polygon points="127,118 147,112 128,128" fill="url(#thornGrad4)"/><polygon points="146,100 164,92 145,110" fill="url(#thornGrad4)"/><polygon points="147,68 129,60 146,80" fill="url(#thornGrad4)"/><ellipse cx="63" cy="70" rx="7" ry="3.2" fill="url(#thornGrad4)" transform="rotate(-38 63 70)"/><circle cx="53" cy="158" r="7" fill="url(#thornGrad4)"/><circle cx="56" cy="44" r="6" fill="url(#thornGrad4)"/><circle cx="146" cy="144" r="6" fill="url(#thornGrad4)"/><circle cx="146" cy="44" r="7" fill="url(#thornGrad4)"/></svg></div>Nexus</a>
     <div class="nav-items">
       <a class="nav-item active" id="nav-nexus" onclick="navigate('nexus')" data-section="nexus"><span class="nav-item-icon">◈</span>Nexus</a>
     </div>
@@ -2955,7 +2972,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
       <div class="nexus-layout">
         <div class="nexus-sidebar">
           <div class="nexus-sidebar-head">
-            <div class="nexus-brand"><svg class="nexus-logo-thorn" width="28" height="28" viewBox="0 0 200 200" fill="none"><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M55,150 L55,50 L145,150 L145,50" fill="none" stroke="#8FD66B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="55" cy="50" r="9" fill="#8FD66B"/><circle cx="55" cy="150" r="9" fill="#8FD66B"/><circle cx="145" cy="50" r="9" fill="#8FD66B"/><circle cx="145" cy="150" r="9" fill="#8FD66B"/></svg><div><div class="nexus-brand-name">Nexus</div><div class="nexus-brand-by">by DevConnect</div></div></div>
+            <div class="nexus-brand"><svg class="nexus-logo-thorn" width="28" height="28" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="thornGrad5" x1="30" y1="170" x2="170" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6FCB53"/><stop offset="1" stop-color="#B8F08A"/></linearGradient></defs><rect width="200" height="200" rx="40" fill="#0E140F"/><path d="M53,158 C50,140 58,120 55,100 C52,80 58,62 56,44 C78,64 96,84 112,102 C124,116 132,128 146,144 C144,124 148,104 145,84 C142,64 148,50 146,44" fill="none" stroke="url(#thornGrad5)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,158 C40,162 32,156 34,146 C36,138 46,140 44,148" fill="none" stroke="url(#thornGrad5)" stroke-width="3.5" stroke-linecap="round"/><polygon points="52,132 32,124 51,140" fill="url(#thornGrad5)"/><polygon points="56,108 76,100 57,118" fill="url(#thornGrad5)"/><polygon points="54,84 34,78 53,92" fill="url(#thornGrad5)"/><polygon points="72,80 66,64 82,76" fill="url(#thornGrad5)"/><polygon points="100,98 116,86 103,108" fill="url(#thornGrad5)"/><polygon points="127,118 147,112 128,128" fill="url(#thornGrad5)"/><polygon points="146,100 164,92 145,110" fill="url(#thornGrad5)"/><polygon points="147,68 129,60 146,80" fill="url(#thornGrad5)"/><ellipse cx="63" cy="70" rx="7" ry="3.2" fill="url(#thornGrad5)" transform="rotate(-38 63 70)"/><circle cx="53" cy="158" r="7" fill="url(#thornGrad5)"/><circle cx="56" cy="44" r="6" fill="url(#thornGrad5)"/><circle cx="146" cy="144" r="6" fill="url(#thornGrad5)"/><circle cx="146" cy="44" r="7" fill="url(#thornGrad5)"/></svg><div><div class="nexus-brand-name">Nexus</div><div class="nexus-brand-by">by DevConnect</div></div></div>
             <div class="nexus-status"><span class="live-dot"></span>Actif · temps reel</div>
           </div>
           <div class="nexus-sec-label">Vue d'ensemble</div>
@@ -2972,6 +2989,7 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
           <div class="nexus-nav-item" onclick="switchNexus(this,'nexus-audit');loadNexusAudit()"><span class="nexus-nav-icon"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M6 2.8h6a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3.8a1 1 0 0 1 1-1Z"/><path d="M7 2.3h4v1.4H7z"/><path d="M6.5 8.3 8 9.8l3.5-3.6"/></svg></span>Audit moteur</div>
           <div class="nexus-nav-item" onclick="switchNexus(this,'nexus-tests');initNexusTests()"><span class="nexus-nav-icon"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M7.2 2.6h3.6M7.8 2.6v4.1L4.6 12c-.6 1.1.2 2.4 1.4 2.4h6c1.2 0 2-1.3 1.4-2.4L10.2 6.7V2.6"/><path d="M6.2 10.2h5.6"/></svg></span>Tests</div>
           <div class="nexus-nav-item" onclick="switchNexus(this,'nexus-docs');renderNexusDocs()"><span class="nexus-nav-icon"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M3.2 4.2c1.6-.9 3.7-.9 5.3 0v9.6c-1.6-.9-3.7-.9-5.3 0Z"/><path d="M14.3 4.2c-1.6-.9-3.7-.9-5.3 0v9.6c1.6-.9 3.7-.9 5.3 0Z"/></svg></span>Docs / Intégration</div>
+          <div class="nexus-nav-item" onclick="switchNexus(this,'nexus-roadmap')"><span class="nexus-nav-icon"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M2.5 14.5c2-3 4-3 5.5-1.5s3.5 1.5 5.5-1.5"/><circle cx="3.2" cy="14.5" r="1"/><circle cx="14.8" cy="11.5" r="1"/><path d="M9 3v6"/><path d="M6.5 5.5 9 3l2.5 2.5"/></svg></span>Roadmap</div>
           <div class="nexus-nav-item" onclick="switchNexus(this,'nexus-settings');renderNexusKeyPanel()"><span class="nexus-nav-icon"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M4.5 3.5v4M4.5 9.8v4.7M9 3.5v7M9 12.8v1.7M13.5 3.5v2.2M13.5 8v6.5"/><circle cx="4.5" cy="8.4" r="1.4"/><circle cx="9" cy="11.3" r="1.4"/><circle cx="13.5" cy="6.7" r="1.4"/></svg></span>Parametres</div>
         </div>
 
@@ -3165,6 +3183,15 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
                 <div class="nexus-card-head"><div class="nexus-card-title">&#9661; Live Attack Feed</div><button class="btn btn-ghost btn-sm" onclick="loadNexusThreatIntel()" style="font-size:11px">&#8635;</button></div>
                 <div class="nexus-attack-feed" id="nexus-attack-feed"><div style="text-align:center;padding:20px;color:rgba(231,233,220,.2);font-size:11px;font-family:var(--font-mono)">Aucune attaque détectée</div></div>
               </div>
+            </div>
+
+            <div class="nexus-card" style="margin-top:14px">
+              <div class="nexus-card-head">
+                <div class="nexus-card-title">&#9888; Signatures en attente de validation <span id="nexus-pending-sig-badge" class="nexus-nav-badge" style="display:none">0</span></div>
+                <button class="btn btn-ghost btn-sm" onclick="loadNexusPendingSignatures()" style="font-size:11px">&#8635;</button>
+              </div>
+              <div class="nexus-page-sub" style="margin:0 0 10px;padding:0 18px">Générées automatiquement après une quarantaine (matching flou par similarité de texte). Restent sans effet jusqu'à validation par un staff — un match exact (hash) reste actif automatiquement.</div>
+              <div id="nexus-pending-sig-list" style="padding:0 18px 14px"><div style="text-align:center;padding:20px;color:rgba(231,233,220,.2);font-size:11px;font-family:var(--font-mono)">Chargement...</div></div>
             </div>
           </div>
 
@@ -3374,11 +3401,140 @@ nexus.<span class="c-fn">track</span>(<span class="c-str">'login_failed'</span>,
             </div>
           </div>
 
+          <div class="nexus-section" id="nexus-roadmap">
+            <div class="nexus-page-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;opacity:.8"><path d="M2.5 14.5c2-3 4-3 5.5-1.5s3.5 1.5 5.5-1.5"/><circle cx="3.2" cy="14.5" r="1"/><circle cx="14.8" cy="11.5" r="1"/><path d="M9 3v6"/><path d="M6.5 5.5 9 3l2.5 2.5"/></svg> Roadmap</div>
+            <div class="nexus-page-sub">Pistes à l'étude pour l'évolution de Nexus — rien n'est encore engagé, ceci sert de tableau de bord d'idées</div>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+              <span class="rm-legend" style="background:rgba(143,214,107,.13);color:#4f7a3a;border:1px solid rgba(143,214,107,.25)">● Candidat proche terme</span>
+              <span class="rm-legend" style="background:rgba(224,150,90,.14);color:#9a5f28;border:1px solid rgba(224,150,90,.28)">● Gros chantier (R&amp;D nécessaire)</span>
+              <span class="rm-legend" style="background:rgba(139,92,246,.13);color:#6d4fc9;border:1px solid rgba(139,92,246,.25)">● Concept exploratoire</span>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Nexus devient un réseau, pas juste un outil solo</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Threat intel partagée entre projets</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Les patterns d'attaque détectés sur l'ensemble des projets Nexus sont anonymisés et mutualisés dans une base commune — un nouveau site bénéficie directement de ce que les autres ont déjà appris. Un peu le principe d'un "Cloudflare pour petites communautés / SaaS".</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Score de réputation IP / device cross-projet</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Un attaquant repéré sur un site Nexus devient automatiquement suspect sur les autres projets du réseau.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">IA qui bosse à ta place</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Auto-génération de règles par LLM</span><span class="rm-badge rm-b-green">Candidat proche</span></div>
+                  <div class="rm-item-desc">Nexus analyse 7 jours de logs, repère les patterns anormaux tout seul et propose des règles prêtes à activer ("j'ai vu 40 tentatives similaires, tu veux que je bloque ce pattern ?") plutôt que de tout créer à la main.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Copilote incident</span><span class="rm-badge rm-b-green">Candidat proche</span></div>
+                  <div class="rm-item-desc">Quand un incident critique se déclenche, un résumé généré explique ce qui s'est passé, la gravité et l'action recommandée — plus lisible qu'un log brut.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Ce qui se montre / se partage</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Badge "Protégé par Nexus" embeddable</span><span class="rm-badge rm-b-green">Candidat proche</span></div>
+                  <div class="rm-item-desc">Badge public à intégrer sur le site du client, avec mini dashboard live (events bloqués ce mois) — effet marketing gratuit à chaque install.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Status page publique par projet</span><span class="rm-badge rm-b-green">Candidat proche</span></div>
+                  <div class="rm-item-desc">Type statuspage.io mais pour la sécu : "12 tentatives bloquées aujourd'hui, 0 incident actif" — de la transparence qui rassure les utilisateurs du client.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Mode "war room" temps réel</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Vue plein écran façon SOC de film : logs qui défilent, carte du monde avec les IP qui tapent. Pas indispensable, mais très efficace en démo ou en pitch.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Direction produit plus radicale</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Firewall applicatif complet</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Nexus passe de la détection/alerte à un vrai proxy devant l'API du client, qui bloque avant même que la requête touche son backend.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Marketplace de règles communautaires</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Les devs publient et partagent leurs configs de règles par stack (Discord bot, SaaS, forum...) — Nexus devient une plateforme plutôt qu'un produit fermé.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Fingerprinting comportemental</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Au-delà du comptage d'events : analyser le rythme de frappe / navigation d'un compte pour distinguer un bot d'un humain, même sans event suspect explicite.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Honeypot automatique</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Nexus génère de faux endpoints / faux boutons admin invisibles pour un humain normal — tout ce qui les touche est forcément un scraper ou un bot, ban instantané sans faux positif possible.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Corrélation temporelle multi-comptes</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Détecter des comptes qui agissent en synchronisation parfaite (bot farm) même avec des IP différentes, uniquement sur le pattern de timing.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Gamification du côté défense</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Mode "capture the flag" public</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Un environnement de test où n'importe qui peut essayer d'attaquer un faux projet Nexus pour voir le moteur réagir en direct — génère du contenu, prouve que ça marche, et recrute des hackers curieux comme early testers.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Classement "meilleurs admins Nexus"</span><span class="rm-badge rm-b-green">Candidat proche</span></div>
+                  <div class="rm-item-desc">Score de sécu par projet basé sur la config des règles et le temps de réponse aux incidents — pousse les clients à mieux configurer, et donne un levier marketing ("les projets Nexus les mieux notés").</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Extension du domaine</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Nexus pour Discord / Telegram natif</span><span class="rm-badge rm-b-amber">Gros chantier</span></div>
+                  <div class="rm-item-desc">Bot plug-and-play qui utilise le même moteur, zéro-code pour les serveurs communautaires sans dev — un marché à part entière à côté du DevConnect actuel.</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Mode "red team as a service"</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Nexus attaque volontairement le site du client (avec permission) pour tester ses défenses avant qu'un vrai attaquant le fasse — un pentest automatisé en abonnement mensuel.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nexus-card">
+              <div class="nexus-card-head"><div class="nexus-card-title">Le plus délire</div></div>
+              <div class="rm-list">
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Prédiction d'attaque</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">À partir des patterns globaux (la threat intel partagée), Nexus prévient avant qu'une attaque n'arrive sur un projet spécifique : "vague de credential stuffing détectée sur 3 autres projets similaires au tien, active le mode strict".</div>
+                </div>
+                <div class="rm-item">
+                  <div class="rm-item-top"><span class="rm-item-name">Kill switch physique</span><span class="rm-badge rm-b-violet">Concept</span></div>
+                  <div class="rm-item-desc">Intégration webhook vers un objet réel (lampe qui clignote rouge, notif Discord perso) quand un incident critique se déclenche — pour voir que ça chauffe même loin du PC.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:4px;padding:14px 18px;background:rgba(231,233,220,.02);border:1px solid rgba(231,233,220,.05);border-radius:var(--radius);font-family:var(--font-mono);font-size:11px;color:rgba(231,233,220,.25);line-height:1.8">
+              Cette page est un tableau d'idées, pas un engagement de livraison. Les statuts reflètent une estimation d'effort, pas une date.
+            </div>
+          </div>
+
           <div class="nexus-section" id="nexus-settings">
             <div class="nexus-page-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;opacity:.8"><path d="M4.5 3.5v4M4.5 9.8v4.7M9 3.5v7M9 12.8v1.7M13.5 3.5v2.2M13.5 8v6.5"/><circle cx="4.5" cy="8.4" r="1.4"/><circle cx="9" cy="11.3" r="1.4"/><circle cx="13.5" cy="6.7" r="1.4"/></svg> Parametres Nexus</div>
             <div class="nexus-page-sub">Configuration du moteur d'automatisation</div>
             <div class="nexus-card">
-              <div class="nexus-card-head"><div class="nexus-card-title">Projet &amp; clé API</div></div>
+              <div class="nexus-card-head"><div class="nexus-card-title">Intégration</div></div>
               <div id="nexus-key-panel"><div style="padding:14px 20px;color:rgba(231,233,220,.35);font-size:12px">Chargement...</div></div>
             </div>
             <div class="nexus-card">
@@ -8043,10 +8199,11 @@ async function logSecurityEvent(eventType,details={}){
 // moteur via l'API d'ingestion (Edge Function nexus-ingest) sans
 // jamais voir les données de DevConnect.
 // ============================================================
-const NEXUS_DEVCONNECT_PROJECT_ID='035851c6-16a5-41d8-af43-0504f02955f9'; // projet interne DevConnect (staff/cover.dev)
-let NEXUS_PROJECT_ID=NEXUS_DEVCONNECT_PROJECT_ID; // devient dynamique : projet actif sélectionné par le client
-let nexusUserProjects=[]; // liste des projets Nexus possédés par l'utilisateur connecté
-let nexusActiveProject=null; // objet projet actif (id, name, plan, key_prefix, monthly_event_limit, is_internal)
+const NEXUS_DEVCONNECT_PROJECT_ID='035851c6-16a5-41d8-af43-0504f02955f9'; // ancien projet unique historique — conservé pour référence, plus utilisé par défaut
+let NEXUS_PROJECT_ID=null;      // projet actuellement sélectionné (multi-tenant restauré)
+let nexusMyProjects=[];         // projets de l'utilisateur connecté (via nexus_list_my_projects)
+let nexusCurrentProject=null;   // objet du projet sélectionné (id, name, api_key_prefix, plan, monthly_event_limit, created_at, revoked)
+let nexusJustIssuedKey=null;    // clé API brute reçue une seule fois (création/régénération), jamais re-fetchable ensuite
 
 // Écrit un event à la fois dans l'ancien système (security_logs, pour
 // compat avec le code existant qui le lit encore ailleurs) et dans le
@@ -8134,6 +8291,7 @@ function nexusDecayScore(score,lastEventAt){
 }
 async function nexusUpdateLiveRisk(eventType){
   if(!currentUser)return;
+  if(!NEXUS_PROJECT_ID)return;
   const weight=NEXUS_RISK_WEIGHTS[nexusSeverity(eventType)]||1;
   try{
     const{data:existing}=await db.from('nexus_risk_scores').select('*').eq('project_id',NEXUS_PROJECT_ID).eq('user_ref',currentUser.id).maybeSingle();
@@ -8148,285 +8306,278 @@ async function nexusUpdateLiveRisk(eventType){
 }
 
 async function initNexus(){
-  if(nexusInitialized){loadNexusOverview();return;}
+  if(nexusInitialized){
+    if(NEXUS_PROJECT_ID)loadNexusOverview();
+    else renderNexusKeyPanel();
+    return;
+  }
   nexusInitialized=true;
   await nexusLoadMyProjects();
+  renderNexusKeyPanel();
+  if(!NEXUS_PROJECT_ID)return;
   await nexusFetchSettings();
   await nexusFetchRules();
   applyNexusSettingsUI();
   await loadNexusOverview();
-  renderNexusKeyPanel();
   subscribeNexusRealtime();
 }
 
-// ── Multi-tenant : projets Nexus du client connecté ────────────
-const isCoverDevAccount=()=>(currentProfile?.username||'').toLowerCase()==='cover.dev'||(currentProfile?.display_name||'').toLowerCase()==='cover.dev';
+// ── Nexus = SaaS multi-tenant ──────────────────────────────────
+// Chaque utilisateur connecté peut créer un ou plusieurs projets Nexus,
+// générer/régénérer/révoquer une clé API par projet, et souscrire à un
+// plan payant (Stripe, via l'Edge Function nexus-create-checkout). Le
+// projet actuellement sélectionné (NEXUS_PROJECT_ID) pilote tout le
+// dashboard : logs, règles, alertes, incidents, risque, audit.
 
 async function nexusLoadMyProjects(){
-  nexusUserProjects=[];
-  if(isCoverDevAccount()){
-    nexusUserProjects.push({id:NEXUS_DEVCONNECT_PROJECT_ID,name:'DevConnect (interne)',plan:'internal',is_internal:true});
-  }
+  if(!currentUser){nexusMyProjects=[];NEXUS_PROJECT_ID=null;nexusCurrentProject=null;return;}
   try{
     const{data,error}=await db.rpc('nexus_list_my_projects');
-    if(!error&&Array.isArray(data)){
-      data.forEach(p=>{
-        if(p.id===NEXUS_DEVCONNECT_PROJECT_ID)return; // évite le doublon si jamais déjà présent
-        if(p.revoked)return; // clé révoquée = projet non sélectionnable depuis le switcher
-        nexusUserProjects.push({id:p.id,name:p.name,plan:p.plan,key_prefix:p.api_key_prefix,monthly_event_limit:p.monthly_event_limit,is_internal:false});
-      });
-    }
-  }catch(e){/* silencieux */}
-  if(nexusUserProjects.length===0){
-    // Nouveau client sans aucun projet : on le laisse arriver sur un état "créer mon premier projet"
-    nexusActiveProject=null;
-    renderNexusProjectSwitcher();
-    renderNexusNoProjectState();
-    return;
-  }
-  const saved=localStorage.getItem('nexus_active_project');
-  const found=nexusUserProjects.find(p=>p.id===saved);
-  nexusActiveProject=found||nexusUserProjects[0];
-  NEXUS_PROJECT_ID=nexusActiveProject.id;
-  renderNexusProjectSwitcher();
+    if(error)throw error;
+    nexusMyProjects=data||[];
+  }catch(e){nexusMyProjects=[];}
+  const savedId=localStorage.getItem('nexus_current_project_'+currentUser.id);
+  let pick=nexusMyProjects.find(p=>p.id===savedId)||nexusMyProjects[0]||null;
+  nexusCurrentProject=pick;
+  NEXUS_PROJECT_ID=pick?pick.id:null;
+  if(pick)localStorage.setItem('nexus_current_project_'+currentUser.id,pick.id);
 }
 
-function renderNexusProjectSwitcher(){
-  const head=document.querySelector('#section-nexus .nexus-sidebar-head');
-  if(!head)return;
-  let box=document.getElementById('nexus-project-switcher');
-  if(!box){
-    box=document.createElement('div');
-    box.id='nexus-project-switcher';
-    box.style.cssText='margin-top:12px;display:flex;flex-direction:column;gap:8px';
-    head.appendChild(box);
-  }
-  if(!nexusUserProjects.length){
-    box.innerHTML=`<button class="btn btn-primary btn-sm" style="width:100%;font-size:12px" onclick="showNexusCreateProjectModal()">+ Créer mon projet Nexus</button>`;
-    return;
-  }
-  const current=nexusUserProjects.find(p=>p.id===NEXUS_PROJECT_ID)||nexusUserProjects[0];
-  const optsHtml=nexusUserProjects.map(p=>`<div class="cdrop-option${p.id===NEXUS_PROJECT_ID?' selected':''}" data-value="${esc(p.id)}" onclick="nexusPickProject('${p.id}')">${esc(p.name)}${p.is_internal?' <span style="color:var(--text-muted)">· interne</span>':''}</div>`).join('');
-  box.innerHTML=`
-    <div class="cdrop nexus-switcher" id="nexus-project-cdrop">
-      <div class="cdrop-trigger" tabindex="0" onclick="toggleCustomDropdown('nexus-project')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCustomDropdown('nexus-project')}">
-        <span class="cdrop-trigger-label">${esc(current.name)}${current.is_internal?' · interne':''}</span>
-        <span class="cdrop-trigger-arrow"></span>
-      </div>
-      <div class="cdrop-menu">${optsHtml}</div>
-    </div>
-    <button class="btn btn-ghost btn-sm" style="width:100%;font-size:11px" onclick="showNexusCreateProjectModal()">+ Nouveau projet</button>
-  `;
-}
-
-function nexusPickProject(projectId){
-  const wrap=document.getElementById('nexus-project-cdrop');
-  if(wrap)wrap.classList.remove('open');
-  nexusSwitchProject(projectId);
-}
-
-function renderNexusNoProjectState(){
-  const overview=document.getElementById('nexus-overview');
-  if(!overview)return;
-  overview.querySelectorAll('.nexus-empty-state').forEach(e=>e.remove());
-  const div=document.createElement('div');
-  div.className='nexus-empty-state';
-  div.style.cssText='padding:48px 24px;text-align:center;color:rgba(27,36,25,.4);font-size:13px';
-  div.innerHTML=`Tu n'as pas encore de projet Nexus.<br><br><button class="btn btn-primary btn-sm" onclick="nexusCreateProjectFlow()">Créer mon premier projet</button>`;
-  overview.appendChild(div);
-}
-
-async function nexusSwitchProject(projectId){
-  if(!projectId||projectId===NEXUS_PROJECT_ID)return;
-  const proj=nexusUserProjects.find(p=>p.id===projectId);
+async function nexusSwitchProject(id){
+  const proj=nexusMyProjects.find(p=>p.id===id);
   if(!proj)return;
-  nexusActiveProject=proj;
-  NEXUS_PROJECT_ID=projectId;
-  localStorage.setItem('nexus_active_project',projectId);
-  renderNexusProjectSwitcher();
-  nexusUnsubscribeRealtime();
+  nexusCurrentProject=proj;
+  NEXUS_PROJECT_ID=proj.id;
+  if(currentUser)localStorage.setItem('nexus_current_project_'+currentUser.id,proj.id);
+  nexusJustIssuedKey=null;
+  renderNexusKeyPanel();
   await nexusFetchSettings();
   await nexusFetchRules();
   applyNexusSettingsUI();
   await loadNexusOverview();
-  renderNexusKeyPanel();
-  subscribeNexusRealtime();
-  showToast(`Projet actif : ${proj.name}`,'info');
+  if(document.getElementById('nexus-logs')?.classList.contains('active'))loadNexusLogs();
+  if(document.getElementById('nexus-rules')?.classList.contains('active'))loadNexusRules();
+  if(document.getElementById('nexus-alerts')?.classList.contains('active'))loadNexusAlerts();
+  if(document.getElementById('nexus-audit')?.classList.contains('active'))loadNexusAudit();
+  if(document.getElementById('nexus-incidents')?.classList.contains('active'))loadNexusIncidents();
+  if(document.getElementById('nexus-threats')?.classList.contains('active'))loadNexusThreatIntel();
+  renderNexusDocs();
+  showToast(`Projet actif : ${esc(proj.name)}`,'info');
 }
 
-function showNexusCreateProjectModal(){
-  const ownedCount=nexusUserProjects.filter(p=>!p.is_internal).length;
-  const hasUnlimitedPlanProject=nexusUserProjects.some(p=>!p.is_internal&&(NEXUS_PLAN_LIMITS[p.plan||'free']?.maxProjects)===Infinity);
-  if(ownedCount>=1&&!hasUnlimitedPlanProject){
-    showToast('Plusieurs projets nécessite le plan Business ou plus.','error');
-    if(nexusActiveProject&&!nexusActiveProject.is_internal)nexusOpenPlansModal();
-    return;
-  }
-  document.getElementById('nexus-generic-modal-overlay')?.remove();
-  const overlay=document.createElement('div');
-  overlay.id='nexus-generic-modal-overlay';
-  overlay.className='nexus-modal-overlay';
-  overlay.innerHTML=`
-    <div class="nexus-modal-box">
-      <div class="nexus-modal-title">Nouveau projet Nexus</div>
-      <div class="nexus-modal-sub">Un projet = une clé API et un quota d'events indépendant. Tu pourras en créer d'autres plus tard.</div>
-      <input id="nexus-new-project-name" class="nexus-modal-input" type="text" placeholder="ex : mon-app-prod" maxlength="60">
-      <div class="nexus-modal-actions">
-        <button class="btn btn-primary btn-sm" onclick="nexusSubmitCreateProject()">Créer le projet</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nexus-generic-modal-overlay').remove()">Annuler</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
-  const input=document.getElementById('nexus-new-project-name');
-  input.focus();
-  input.addEventListener('keydown',e=>{if(e.key==='Enter')nexusSubmitCreateProject();});
-}
-
-function nexusSubmitCreateProject(){
-  const input=document.getElementById('nexus-new-project-name');
-  const name=(input?.value||'').trim();
-  if(!name){showToast('Donne un nom à ton projet.','error');return;}
-  document.getElementById('nexus-generic-modal-overlay')?.remove();
-  nexusCreateProjectFlow(name);
-}
-
-// Modale de confirmation générique (remplace confirm() natif du navigateur)
-function nexusConfirmModal(title,message,confirmLabel,onConfirm,danger){
-  document.getElementById('nexus-generic-modal-overlay')?.remove();
-  const overlay=document.createElement('div');
-  overlay.id='nexus-generic-modal-overlay';
-  overlay.className='nexus-modal-overlay';
-  const confirmStyle=danger?'style="background:rgba(224,80,80,.12);border:1px solid rgba(224,80,80,.4);color:#ff8a8a"':'';
-  overlay.innerHTML=`
-    <div class="nexus-modal-box">
-      <div class="nexus-modal-title">${esc(title)}</div>
-      <div class="nexus-modal-sub">${esc(message)}</div>
-      <div class="nexus-modal-actions">
-        <button class="btn btn-sm" ${confirmStyle} id="nexus-confirm-modal-yes">${esc(confirmLabel)}</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nexus-generic-modal-overlay').remove()">Annuler</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
-  document.getElementById('nexus-confirm-modal-yes').addEventListener('click',()=>{overlay.remove();onConfirm();});
-}
-
-async function nexusCreateProjectFlow(name){
-  if(!name){showNexusCreateProjectModal();return;}
-  try{
-    const{data,error}=await db.rpc('nexus_create_project',{p_name:name});
-    if(error){showToast('Erreur création projet : '+error.message,'error');return;}
-    const row=Array.isArray(data)?data[0]:data;
-    await nexusLoadMyProjects();
-    if(row?.project_id){
-      NEXUS_PROJECT_ID=row.project_id;
-      nexusActiveProject=nexusUserProjects.find(p=>p.id===row.project_id)||nexusActiveProject;
-      localStorage.setItem('nexus_active_project',row.project_id);
-      renderNexusProjectSwitcher();
-    }
-    if(row?.api_key){
-      showNexusApiKeyModal(row.api_key,name);
-    }
-    await nexusFetchSettings();
-    await nexusFetchRules();
-    applyNexusSettingsUI();
-    await loadNexusOverview();
-    renderNexusKeyPanel();
-    nexusUnsubscribeRealtime();
-    subscribeNexusRealtime();
-  }catch(e){showToast('Erreur création projet.','error');}
-}
-
-function showNexusApiKeyModal(apiKey,projectName){
-  document.getElementById('nexus-generic-modal-overlay')?.remove();
-  const overlay=document.createElement('div');
-  overlay.id='nexus-generic-modal-overlay';
-  overlay.className='nexus-modal-overlay';
-  overlay.innerHTML=`
-    <div class="nexus-modal-box">
-      <div class="nexus-modal-title">Projet "${esc(projectName)}" créé</div>
-      <div class="nexus-modal-sub">Voici ta clé API. <strong style="color:var(--text)">Elle ne sera plus jamais affichée en clair</strong> — copie-la et stocke-la en lieu sûr maintenant.</div>
-      <div class="nexus-modal-key">${esc(apiKey)}</div>
-      <div class="nexus-modal-actions" style="margin-top:16px">
-        <button class="btn btn-primary btn-sm" onclick="navigator.clipboard.writeText('${apiKey.replace(/'/g,"\\'")}');showToast('Clé copiée.','info')">Copier la clé</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('nexus-generic-modal-overlay').remove()">Fermer</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
+function nexusProjectSwitcherHTML(){
+  if(!nexusMyProjects.length)return'';
+  const opts=nexusMyProjects.map(p=>`<div class="cdrop-option${p.id===NEXUS_PROJECT_ID?' selected':''}" data-value="${p.id}" onclick="selectCustomDropdown('nexus-proj-switch','${p.id}');nexusSwitchProject('${p.id}')">${esc(p.name)}${p.revoked?' (clé révoquée)':''}</div>`).join('');
+  const currentName=nexusCurrentProject?nexusCurrentProject.name:'Choisir un projet';
+  return `<div class="cdrop nexus-switcher" id="nexus-proj-switch-cdrop" data-id="nexus-proj-switch" style="position:relative;min-width:200px">
+    <div class="cdrop-trigger" tabindex="0" onclick="toggleCustomDropdown('nexus-proj-switch')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCustomDropdown('nexus-proj-switch')}">
+      <span class="cdrop-trigger-label" id="nexus-proj-switch-label">${esc(currentName)}</span>
+      <span class="cdrop-trigger-arrow"></span>
+    </div>
+    <div class="cdrop-menu">${opts}</div>
+  </div>`;
 }
 
 function renderNexusKeyPanel(){
   const container=document.getElementById('nexus-key-panel');
   if(!container)return;
-  if(!nexusActiveProject||nexusActiveProject.is_internal){
-    container.innerHTML=`<div style="padding:14px 20px;color:rgba(27,36,25,.35);font-size:12px">Le projet interne DevConnect n'utilise pas de clé API externe.</div>`;
+  if(!nexusMyProjects.length){
+    container.innerHTML=`<div style="padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+      <div style="color:rgba(231,233,220,.5);font-size:12px;line-height:1.7">Tu n'as encore aucun projet Nexus. Crée-en un pour obtenir une clé API et brancher le moteur sur ton propre site.</div>
+      <div><button class="btn btn-primary btn-sm" onclick="nexusOpenCreateProjectModal()">+ Créer mon premier projet</button></div>
+    </div>`;
     return;
   }
-  const p=nexusActiveProject;
-  const isPaid=(p.plan||'free')!=='free';
-  const planBadge=`<span class="nexus-plan-badge${isPaid?' paid':''}">${esc(p.plan||'free')}</span>`;
-  const billingBtn=`<button class="btn btn-primary btn-sm" onclick="nexusOpenPlansModal()">${isPaid?'Changer de plan':'Voir les plans'}</button>`;
+  const p=nexusCurrentProject;
+  const planLabel=NEXUS_PLAN_LABELS[p.plan]||p.plan;
+  const revokedBadge=p.revoked?`<span class="nexus-plan-badge" style="border-color:rgba(224,128,128,.4);color:#e08080">Clé révoquée</span>`:'';
+  const keyLine=nexusJustIssuedKey?`
+    <div style="margin-top:10px;padding:12px 14px;background:rgba(106,184,122,.06);border:1px solid rgba(106,184,122,.3);border-radius:var(--radius);">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#6ab87a;font-family:var(--font-mono);margin-bottom:6px">Clé API — copie-la maintenant, elle ne sera plus jamais affichée en clair</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <code id="nexus-fresh-key" style="font-family:var(--font-mono);font-size:12px;word-break:break-all;flex:1">${esc(nexusJustIssuedKey)}</code>
+        <button class="btn btn-ghost btn-sm" onclick="nexusCopyCode('nexus-fresh-key')">Copier</button>
+      </div>
+    </div>`:`
+    <div style="margin-top:10px;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)">${esc(p.api_key_prefix||'nx_live_…')}••••••••••••••••</div>`;
   container.innerHTML=`
-    <div style="padding:0 20px 16px">
-      <div class="nexus-setting-row"><div><div class="nexus-setting-label">Projet</div><div class="nexus-setting-sub">${esc(p.name)}</div></div>${planBadge}</div>
-      <div class="nexus-setting-row"><div><div class="nexus-setting-label">Clé API</div><div class="nexus-setting-sub" style="font-family:var(--font-mono)">${esc(p.key_prefix||'nx_live_····')}····</div></div></div>
-      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-        <button class="btn btn-ghost btn-sm" onclick="nexusRegenerateKey()">Régénérer la clé</button>
-        <button class="btn btn-ghost btn-sm" style="color:#ff6b6b" onclick="nexusRevokeKey()">Révoquer</button>
-        ${billingBtn}
+    <div style="padding:14px 20px 18px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        ${nexusProjectSwitcherHTML()}
+        <button class="btn btn-ghost btn-sm" onclick="nexusOpenCreateProjectModal()">+ Nouveau projet</button>
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="nexus-plan-badge${p.plan!=='free'?' paid':''}">${esc(planLabel)}</span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono)">quota ${p.monthly_event_limit.toLocaleString('fr-FR')} events/mois</span>
+          ${revokedBadge}
+        </div>
+        ${keyLine}
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="nexusRegenerateKeyFlow()">Régénérer la clé</button>
+        <button class="btn btn-ghost btn-sm" style="color:#e08080" onclick="nexusRevokeKeyFlow()">Révoquer la clé</button>
+        <button class="btn btn-primary btn-sm" onclick="nexusOpenPlansModal()">Voir les plans</button>
       </div>
     </div>`;
-}
-
-async function nexusRegenerateKey(){
-  if(!nexusActiveProject||nexusActiveProject.is_internal)return;
-  nexusConfirmModal('Régénérer la clé API ?',"L'ancienne clé cessera immédiatement de fonctionner — toute intégration en place devra être mise à jour avec la nouvelle.",'Régénérer',async()=>{
-    try{
-      const{data,error}=await db.rpc('nexus_regenerate_api_key',{p_project_id:nexusActiveProject.id});
-      if(error){showToast('Erreur : '+error.message,'error');return;}
-      if(data)showNexusApiKeyModal(data,nexusActiveProject.name);
-      await nexusLoadMyProjects();
-      renderNexusKeyPanel();
-    }catch(e){showToast('Erreur régénération clé.','error');}
-  },true);
-}
-
-async function nexusRevokeKey(){
-  if(!nexusActiveProject||nexusActiveProject.is_internal)return;
-  nexusConfirmModal('Révoquer la clé API ?',"L'ingestion d'events pour ce projet s'arrêtera immédiatement et définitivement. Cette action est irréversible.",'Révoquer',async()=>{
-    try{
-      const{error}=await db.rpc('nexus_revoke_api_key',{p_project_id:nexusActiveProject.id});
-      if(error){showToast('Erreur : '+error.message,'error');return;}
-      showToast('Clé révoquée.','info');
-      localStorage.removeItem('nexus_active_project');
-      nexusUnsubscribeRealtime();
-      await nexusLoadMyProjects();
-      await nexusFetchSettings();
-      await nexusFetchRules();
-      applyNexusSettingsUI();
-      await loadNexusOverview();
-      renderNexusKeyPanel();
-      subscribeNexusRealtime();
-    }catch(e){showToast('Erreur révocation clé.','error');}
-  },true);
 }
 
 function renderNexusDocs(){
   const box=document.getElementById('nexus-docs-project-info');
   if(!box)return;
-  if(!nexusActiveProject){
-    box.innerHTML=`Tu n'as pas encore de projet Nexus. <a href="javascript:void(0)" onclick="nexusCreateProjectFlow()" style="color:var(--text)">Crée-en un</a> pour obtenir ta clé API.`;
+  if(!NEXUS_PROJECT_ID){
+    box.innerHTML=`Sélectionne ou crée un projet dans Paramètres → Intégration pour obtenir ta clé API et voir le snippet d'installation.`;
+    const sdk=document.getElementById('nexus-doc-code-sdk');
     return;
   }
-  if(nexusActiveProject.is_internal){
-    box.innerHTML=`Le projet interne <strong style="color:var(--text)">DevConnect</strong> n'a pas de clé API — c'est le code de la plateforme elle-même qui écrit dans Nexus. Bascule sur un de tes projets clients (menu à gauche) pour voir sa clé et ses snippets d'intégration.`;
-    return;
+  const p=nexusCurrentProject;
+  box.innerHTML=`Projet actif : <strong>${esc(p.name)}</strong> — plan ${esc(NEXUS_PLAN_LABELS[p.plan]||p.plan)}. Utilise ta clé API (${esc(p.api_key_prefix||'nx_live_…')}••••) avec le SDK ci-dessous, ou envoie directement des events à l'API d'ingestion.`;
+  const sdk=document.getElementById('nexus-doc-code-sdk');
+  if(sdk){
+    const keyForSnippet=nexusJustIssuedKey||(p.api_key_prefix?p.api_key_prefix+'…':'nx_live_VOTRE_CLE');
+    sdk.innerHTML=`&lt;script src="https://devconnect-dev.github.io/Nexus/nexus-sdk.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  Nexus.init('${esc(keyForSnippet)}');
+
+  // Quand un évènement pertinent se produit dans ton app :
+  Nexus.track('login_failed', {
+    user_ref: 'user-42',
+    severity: 'medium',
+    details: { ip: '1.2.3.4' }
+  });
+&lt;/script&gt;`;
   }
-  const p=nexusActiveProject;
-  box.innerHTML=`Projet <strong style="color:var(--text)">${esc(p.name)}</strong> · plan <strong style="color:var(--text)">${esc(p.plan||'free')}</strong> · quota <strong style="color:var(--text)">${(p.monthly_event_limit||0).toLocaleString('fr-FR')} events/mois</strong><br>
-  Ta clé commence par <span style="font-family:var(--font-mono)">${esc(p.key_prefix||'nx_live_····')}</span> — récupère la clé complète (affichée une seule fois) dans <a href="javascript:void(0)" onclick="switchNexus(document.querySelector('[onclick*=\\'nexus-settings\\']'),'nexus-settings');renderNexusKeyPanel()" style="color:var(--text)">Paramètres</a>, ou régénère-en une nouvelle si tu l'as perdue.`;
+}
+
+// ---------- Modales dynamiques (projet / clé / plans) ----------
+function nexusCloseModal(){
+  const el=document.getElementById('nexus-dynamic-modal');
+  if(el)el.remove();
+}
+function nexusOpenModal(innerHtml){
+  nexusCloseModal();
+  const div=document.createElement('div');
+  div.id='nexus-dynamic-modal';
+  div.className='nexus-modal-overlay';
+  div.onclick=(e)=>{if(e.target===div)nexusCloseModal();};
+  div.innerHTML=innerHtml;
+  document.body.appendChild(div);
+}
+
+function nexusOpenCreateProjectModal(){
+  nexusOpenModal(`<div class="nexus-modal-box">
+    <div style="font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:4px">Nouveau projet Nexus</div>
+    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:16px">Un projet = un site à protéger, une clé API dédiée.</div>
+    <input id="nexus-new-project-name" class="form-input" placeholder="Nom du projet (ex: Mon site e-commerce)" style="width:100%;margin-bottom:14px" maxlength="60">
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn btn-ghost btn-sm" onclick="nexusCloseModal()">Annuler</button>
+      <button class="btn btn-primary btn-sm" onclick="nexusCreateProjectSubmit()">Créer</button>
+    </div>
+  </div>`);
+  setTimeout(()=>document.getElementById('nexus-new-project-name')?.focus(),50);
+}
+
+async function nexusCreateProjectSubmit(){
+  const nameEl=document.getElementById('nexus-new-project-name');
+  const name=(nameEl?.value||'').trim();
+  if(!name){showToast('Donne un nom à ton projet.','error');return;}
+  if(!currentUser){showToast('Connecte-toi d\'abord.','error');return;}
+  try{
+    const{data,error}=await db.rpc('nexus_create_project',{p_name:name});
+    if(error)throw error;
+    const row=Array.isArray(data)?data[0]:data;
+    const freshKey=row?.api_key||null;
+    nexusCloseModal();
+    showToast('Projet créé.','success');
+    await nexusLoadMyProjects();
+    if(row?.project_id)await nexusSwitchProject(row.project_id);
+    nexusJustIssuedKey=freshKey;
+    renderNexusKeyPanel();
+    renderNexusDocs();
+  }catch(e){showToast('Erreur création projet : '+(e.message||e),'error');}
+}
+
+async function nexusRegenerateKeyFlow(){
+  if(!NEXUS_PROJECT_ID)return;
+  if(!confirm('Régénérer la clé API ? L\'ancienne clé cessera de fonctionner immédiatement.'))return;
+  try{
+    const{data,error}=await db.rpc('nexus_regenerate_api_key',{p_project_id:NEXUS_PROJECT_ID});
+    if(error)throw error;
+    const freshKey=data;
+    await nexusLoadMyProjects();
+    nexusJustIssuedKey=freshKey;
+    renderNexusKeyPanel();
+    renderNexusDocs();
+    showToast('Nouvelle clé générée — copie-la maintenant.','success');
+  }catch(e){showToast('Erreur régénération : '+(e.message||e),'error');}
+}
+
+async function nexusRevokeKeyFlow(){
+  if(!NEXUS_PROJECT_ID)return;
+  if(!confirm('Révoquer la clé API de ce projet ? Toute intégration utilisant cette clé cessera de fonctionner.'))return;
+  try{
+    const{error}=await db.rpc('nexus_revoke_api_key',{p_project_id:NEXUS_PROJECT_ID});
+    if(error)throw error;
+    nexusJustIssuedKey=null;
+    await nexusLoadMyProjects();
+    renderNexusKeyPanel();
+    showToast('Clé révoquée.','info');
+  }catch(e){showToast('Erreur révocation : '+(e.message||e),'error');}
+}
+
+function nexusOpenPlansModal(){
+  const currentPlan=nexusCurrentPlanKey();
+  const plans=[
+    {key:'free',name:'Free',price:'0€',limit:'2 000',feats:['1 projet','Règles de base','Rétention 7 jours']},
+    {key:'starter',name:'Starter',price:'19€',limit:'25 000',feats:['Alertes email','Rétention 30 jours','10 règles']},
+    {key:'pro',name:'Pro',price:'49€',limit:'150 000',feats:['Règles avancées (incidents auto)','Rétention 90 jours','25 règles'],featured:true},
+    {key:'business',name:'Business',price:'149€',limit:'750 000',feats:['Règles illimitées','Rétention 1 an','Support prioritaire']},
+    {key:'enterprise',name:'Enterprise',price:'Sur devis',limit:'Sur mesure',feats:['SLA dédié','Rétention illimitée','Onboarding accompagné']},
+  ];
+  const cardsHtml=plans.map(p=>{
+    const isCurrent=p.key===currentPlan;
+    const cls='nexus-plan-card'+(p.featured?' featured':'')+(isCurrent?' current':'');
+    let btn;
+    if(isCurrent)btn=`<button class="btn btn-ghost btn-sm" disabled style="opacity:.5;width:100%">Plan actuel</button>`;
+    else if(p.key==='free')btn=`<button class="btn btn-ghost btn-sm" disabled style="opacity:.5;width:100%">Plan par défaut</button>`;
+    else if(p.key==='enterprise')btn=`<button class="btn btn-ghost btn-sm" style="width:100%" onclick="window.open('mailto:contact@nexus-security.dev?subject=Plan%20Enterprise')">Nous contacter</button>`;
+    else btn=`<button class="btn btn-primary btn-sm" style="width:100%" onclick="nexusStartCheckout('${p.key}')">Choisir</button>`;
+    return `<div class="${cls}">
+      ${p.featured?'<div class="nexus-plan-tag">Recommandé</div>':''}
+      <div class="nexus-plan-name">${p.name}</div>
+      <div class="nexus-plan-price">${p.price}${p.key!=='free'&&p.key!=='enterprise'?'<small> /mois</small>':''}</div>
+      <div class="nexus-plan-quota">${p.limit} events/mois</div>
+      <ul class="nexus-plan-feats">${p.feats.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      ${btn}
+    </div>`;
+  }).join('');
+  nexusOpenModal(`<div class="nexus-plans-modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-family:var(--font-display);font-size:18px;font-weight:700">Plans Nexus</div>
+      <button class="btn btn-ghost btn-sm" onclick="nexusCloseModal()">✕</button>
+    </div>
+    <div style="font-size:12px;color:var(--text-secondary);margin-top:4px">${nexusCurrentProject?`Pour le projet ${esc(nexusCurrentProject.name)}`:'Crée ou sélectionne un projet pour t\'abonner'}</div>
+    <div class="nexus-plans-grid">${cardsHtml}</div>
+  </div>`);
+}
+
+async function nexusStartCheckout(planKey){
+  if(!NEXUS_PROJECT_ID){showToast('Sélectionne d\'abord un projet.','error');return;}
+  const priceInfo=NEXUS_PLAN_PRICES[planKey];
+  if(!priceInfo){showToast('Plan invalide.','error');return;}
+  try{
+    const{data:sessionData}=await db.auth.getSession();
+    const token=sessionData?.session?.access_token;
+    if(!token){showToast('Connecte-toi pour souscrire.','error');return;}
+    const resp=await fetch(SUPABASE_URL+'/functions/v1/nexus-create-checkout',{
+      method:'POST',
+      headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},
+      body:JSON.stringify({project_id:NEXUS_PROJECT_ID,price_id:priceInfo.priceId,origin:window.location.origin})
+    });
+    const json=await resp.json();
+    if(!json.ok||!json.url)throw new Error(json.detail||json.error||'Erreur inconnue');
+    window.location.href=json.url;
+  }catch(e){showToast('Erreur paiement : '+(e.message||e),'error');}
 }
 
 function nexusCopyCode(elId){
@@ -8436,108 +8587,34 @@ function nexusCopyCode(elId){
   navigator.clipboard.writeText(text).then(()=>showToast('Snippet copié.','info')).catch(()=>showToast('Copie impossible.','error'));
 }
 
-// ── Facturation Stripe ──────────────────────────────────────
-const NEXUS_PRICE_STARTER='price_1ToYXbE6vOC0QUsU7VjgpFyI';
-// (Dashboard Stripe → Produits → Ajouter → prix récurrent mensuel), puis mettre
-// aussi à jour ALLOWED_PRICES / PRICE_PLAN_MAP dans les 2 edge functions Supabase.
-const NEXUS_PRICE_PRO='price_1TosJ1E6vOC0QUsUpDArgLP8';
-const NEXUS_PRICE_BUSINESS='price_1TosJfE6vOC0QUsU0EWsVm7u';
-
-const NEXUS_PLANS=[
-  {key:'free',name:'Free',price:'0€',period:'',quota:'2 000 events / mois',feats:['1 projet','Dashboard temps réel','Règles de base'],priceId:null},
-  {key:'starter',name:'Starter',price:'9,99€',period:'/mois',quota:'25 000 events / mois',feats:['Tout Free','Alertes email','Historique 30 jours'],priceId:NEXUS_PRICE_STARTER},
-  {key:'pro',name:'Pro',price:'29€',period:'/mois',quota:'150 000 events / mois',feats:['Tout Starter','Règles avancées','Historique 90 jours'],priceId:NEXUS_PRICE_PRO,featured:true},
-  {key:'business',name:'Business',price:'79€',period:'/mois',quota:'750 000 events / mois',feats:['Tout Pro','Support prioritaire','Historique illimité','Plusieurs projets'],priceId:NEXUS_PRICE_BUSINESS},
-  {key:'enterprise',name:'Enterprise',price:'Sur devis',period:'',quota:'Illimité',feats:['Tout Business','SLA dédié','Intégration sur-mesure'],priceId:'contact'},
-];
-
-// ── Gating réel des features par plan ──────────────────────────
-// (avant : les plans n'étaient qu'un affichage marketing, rien n'était bloqué)
-const NEXUS_PLAN_RANK={free:0,starter:1,pro:2,business:3,enterprise:4,internal:99};
+// ── Limites de fonctionnalités ──────────────────────────────────
+// Nexus interne tourne toujours au tier le plus complet : plus de
+// gating par plan payant puisqu'il n'y a plus de facturation.
 const NEXUS_PLAN_LIMITS={
-  free:      {maxProjects:1, maxRules:3,  advancedRules:false, emailAlerts:false, historyDays:7},
-  starter:   {maxProjects:1, maxRules:10, advancedRules:false, emailAlerts:true,  historyDays:30},
-  pro:       {maxProjects:1, maxRules:30, advancedRules:true,  emailAlerts:true,  historyDays:90},
-  business:  {maxProjects:Infinity, maxRules:Infinity, advancedRules:true, emailAlerts:true, historyDays:Infinity},
-  enterprise:{maxProjects:Infinity, maxRules:Infinity, advancedRules:true, emailAlerts:true, historyDays:Infinity},
-  internal:  {maxProjects:Infinity, maxRules:Infinity, advancedRules:true, emailAlerts:true, historyDays:Infinity},
+  free:{maxRules:3,advancedRules:false,emailAlerts:false,historyDays:7},
+  starter:{maxRules:10,advancedRules:false,emailAlerts:true,historyDays:30},
+  pro:{maxRules:25,advancedRules:true,emailAlerts:true,historyDays:90},
+  business:{maxRules:Infinity,advancedRules:true,emailAlerts:true,historyDays:365},
+  enterprise:{maxRules:Infinity,advancedRules:true,emailAlerts:true,historyDays:Infinity},
+  internal:{maxRules:Infinity,advancedRules:true,emailAlerts:true,historyDays:Infinity},
 };
-function nexusCurrentPlanKey(){
-  return(nexusActiveProject&&nexusActiveProject.plan)||'free';
-}
-function nexusPlanLimits(){
-  return NEXUS_PLAN_LIMITS[nexusCurrentPlanKey()]||NEXUS_PLAN_LIMITS.free;
-}
-// Vérifie qu'on a au moins le plan minPlan pour une feature donnée.
-// Si non : toast + ouvre la modale des plans. Retourne true/false.
-function nexusRequirePlan(minPlan,featureLabel){
-  const current=nexusCurrentPlanKey();
-  if((NEXUS_PLAN_RANK[current]||0)>=(NEXUS_PLAN_RANK[minPlan]||0))return true;
-  const planName=NEXUS_PLANS.find(p=>p.key===minPlan)?.name||minPlan;
-  showToast(`${featureLabel} nécessite le plan ${planName} ou plus.`,'error');
+const NEXUS_PLAN_LABELS={free:'Free',starter:'Starter',pro:'Pro',business:'Business',enterprise:'Enterprise',internal:'Interne'};
+// price_id Stripe — doivent matcher ALLOWED_PRICES dans l'Edge Function nexus-create-checkout
+const NEXUS_PLAN_PRICES={
+  starter:{priceId:'price_1ToYXbE6vOC0QUsU7VjgpFyI',amount:'19€',limit:25000},
+  pro:{priceId:'price_1TosJ1E6vOC0QUsUpDArgLP8',amount:'49€',limit:150000},
+  business:{priceId:'price_1TosJfE6vOC0QUsU0EWsVm7u',amount:'149€',limit:750000},
+};
+function nexusCurrentPlanKey(){return nexusCurrentProject?.plan||'free';}
+function nexusPlanLimits(){return NEXUS_PLAN_LIMITS[nexusCurrentPlanKey()]||NEXUS_PLAN_LIMITS.free;}
+function nexusRequirePlan(minPlan,label){
+  showToast(`${label} nécessite le plan ${NEXUS_PLAN_LABELS[minPlan]||minPlan}+.`,'info');
   nexusOpenPlansModal();
-  return false;
 }
 function nexusHistoryCutoffISO(){
   const days=nexusPlanLimits().historyDays;
-  if(!isFinite(days))return null; // pas de limite
+  if(!isFinite(days))return null;
   return new Date(Date.now()-days*86400000).toISOString();
-}
-
-function nexusOpenPlansModal(){
-  if(!nexusActiveProject||nexusActiveProject.is_internal)return;
-  const current=nexusActiveProject.plan||'free';
-  const overlay=document.createElement('div');
-  overlay.id='nexus-plans-modal-overlay';
-  overlay.className='nexus-modal-overlay';
-  const cards=NEXUS_PLANS.map(pl=>{
-    const isCurrent=pl.key===current;
-    let action;
-    if(isCurrent){
-      action=`<button class="btn btn-ghost btn-sm" disabled style="width:100%">Plan actuel</button>`;
-    }else if(pl.priceId==='contact'){
-      action=`<a class="btn btn-ghost btn-sm" style="width:100%;text-align:center" href="mailto:sales@nexus.dev?subject=${encodeURIComponent('Nexus Enterprise — '+nexusActiveProject.name)}">Contact commercial</a>`;
-    }else if(pl.key==='free'){
-      action=`<button class="btn btn-ghost btn-sm" disabled style="width:100%">—</button>`;
-    }else{
-      action=`<button class="btn btn-primary btn-sm" style="width:100%" onclick="document.getElementById('nexus-plans-modal-overlay').remove();nexusSubscribe('${pl.priceId}')">Choisir</button>`;
-    }
-    return `<div class="nexus-plan-card${pl.featured?' featured':''}${isCurrent?' current':''}">
-      ${pl.featured?'<span class="nexus-plan-tag">Populaire</span>':''}
-      <div class="nexus-plan-name">${esc(pl.name)}</div>
-      <div class="nexus-plan-price">${esc(pl.price)}<small>${esc(pl.period)}</small></div>
-      <div class="nexus-plan-quota">${esc(pl.quota)}</div>
-      <ul class="nexus-plan-feats">${pl.feats.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
-      ${action}
-    </div>`;
-  }).join('');
-  overlay.innerHTML=`
-    <div class="nexus-plans-modal-box">
-      <div class="nexus-modal-title">Choisir un plan</div>
-      <div class="nexus-modal-sub">Pour le projet "${esc(nexusActiveProject.name)}" — change à tout moment, sans engagement.</div>
-      <div class="nexus-plans-grid">${cards}</div>
-      <div style="margin-top:18px;text-align:right"><button class="btn btn-ghost btn-sm" onclick="document.getElementById('nexus-plans-modal-overlay').remove()">Fermer</button></div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
-}
-
-async function nexusSubscribe(priceId){
-  if(!nexusActiveProject||nexusActiveProject.is_internal)return;
-  const{data:sessionData}=await db.auth.getSession();
-  const token=sessionData?.session?.access_token;
-  if(!token){showToast('Session expirée, reconnecte-toi.','error');return;}
-  showToast('Redirection vers le paiement...','info');
-  try{
-    const res=await fetch('https://ekezdtageniidwjlgyys.supabase.co/functions/v1/nexus-create-checkout',{
-      method:'POST',
-      headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},
-      body:JSON.stringify({project_id:nexusActiveProject.id,price_id:priceId,origin:window.location.origin})
-    });
-    const json=await res.json();
-    if(!res.ok||!json.ok){showToast('Erreur : '+(json.error||'inconnue'),'error');return;}
-    window.location.href=json.url;
-  }catch(e){showToast('Erreur de connexion au paiement.','error');}
 }
 
 function nexusUnsubscribeRealtime(){
@@ -8558,7 +8635,7 @@ function switchNexus(el,sectionId){
 
 // ---------- OVERVIEW ----------
 async function loadNexusOverview(){
-  if(!nexusActiveProject){renderNexusNoProjectState();return;}
+  if(!NEXUS_PROJECT_ID)return;
   setEl('nexus-last-refresh','mis à jour '+new Date().toLocaleTimeString('fr-FR'));
   const dayAgo=new Date(Date.now()-86400000).toISOString();
   const weekAgo=new Date(Date.now()-7*86400000).toISOString();
@@ -8691,6 +8768,7 @@ async function loadMoreNexusLogs(){
 
 async function renderNexusLogs(reset){
   const tbody=document.getElementById('nexus-logs-tbody');
+  if(!NEXUS_PROJECT_ID){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:32px;color:rgba(27,36,25,.2)">Aucun projet sélectionné.</td></tr>';return;}
   if(reset)tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:32px;color:rgba(27,36,25,.2)">Chargement...</td></tr>';
   const retDays=nexusPlanLimits().historyDays;
   setEl('nexus-logs-retention-note',isFinite(retDays)?`rétention ${retDays}j (plan ${nexusCurrentPlanKey()})`:'rétention illimitée');
@@ -8763,6 +8841,7 @@ async function exportNexusLogs(){
 // ---------- RÈGLES (table nexus_rules, scopée projet) ----------
 let _nexusRulesCache=[];
 async function nexusFetchRules(){
+  if(!NEXUS_PROJECT_ID){_nexusRulesCache=[];return _nexusRulesCache;}
   const{data}=await db.from('nexus_rules').select('*').eq('project_id',NEXUS_PROJECT_ID).order('created_at',{ascending:true});
   _nexusRulesCache=data||[];
   return _nexusRulesCache;
@@ -8931,6 +9010,7 @@ function nexusShowAlertToast(alert){
 
 // ---------- ALERTES (table nexus_alerts) ----------
 async function loadNexusAlerts(){
+  if(!NEXUS_PROJECT_ID)return;
   const{data}=await db.from('nexus_alerts').select('*').eq('project_id',NEXUS_PROJECT_ID).order('created_at',{ascending:false}).limit(50);
   const alerts=data||[];
   const list=document.getElementById('nexus-alerts-list');
@@ -8970,6 +9050,7 @@ function nexusAuditDecisionClass(d){
   return'default';
 }
 async function loadNexusAudit(){
+  if(!NEXUS_PROJECT_ID)return;
   let auditQuery=db.from('nexus_engine_audit').select('*').eq('project_id',NEXUS_PROJECT_ID).order('created_at',{ascending:false}).limit(100);
   const auditCutoff=nexusHistoryCutoffISO();
   if(auditCutoff)auditQuery=auditQuery.gte('created_at',auditCutoff);
@@ -9013,6 +9094,7 @@ function nexusFilterAudit(el,filter){
 // ---------- PARAMÈTRES (colonne settings de nexus_projects) ----------
 let _nexusSettingsCache={active:true,alerts:true,rules:true,strict:false,email_alerts:false};
 async function nexusFetchSettings(){
+  if(!NEXUS_PROJECT_ID){_nexusSettingsCache={active:true,alerts:true,rules:true,strict:false,auto_response:false,email_alerts:false};return _nexusSettingsCache;}
   const{data}=await db.from('nexus_projects').select('settings').eq('id',NEXUS_PROJECT_ID).single();
   _nexusSettingsCache=Object.assign({active:true,alerts:true,rules:true,strict:false,auto_response:false,email_alerts:false},data?.settings||{});
   return _nexusSettingsCache;
@@ -9035,6 +9117,7 @@ function applyNexusSettingsUI(){
   }
 }
 async function toggleNexusSetting(el,key){
+  if(!NEXUS_PROJECT_ID){showToast('Crée ou sélectionne un projet Nexus d\'abord.','info');return;}
   if(key==='email_alerts'&&!nexusPlanLimits().emailAlerts){
     nexusRequirePlan('starter','Les alertes email');
     return;
@@ -9048,6 +9131,7 @@ async function toggleNexusSetting(el,key){
 // ---------- TEMPS RÉEL ----------
 function subscribeNexusRealtime(){
   if(nexusChannel)return;
+  if(!NEXUS_PROJECT_ID)return;
   try{
     nexusChannel=db.channel('nexus_logs_'+NEXUS_PROJECT_ID)
       .on('postgres_changes',{event:'INSERT',schema:'public',table:'nexus_logs',filter:'project_id=eq.'+NEXUS_PROJECT_ID},payload=>{
@@ -9347,6 +9431,7 @@ Object.assign(NEXUS_LABELS,{
 
 // ── THREAT INTEL ──────────────────────────────────────────────
 async function loadNexusThreatIntel(){
+  if(!NEXUS_PROJECT_ID)return;
   const dayAgo=new Date(Date.now()-86400000).toISOString();
   const{data:logs}=await db.from('nexus_logs').select('*').eq('project_id',NEXUS_PROJECT_ID).gte('created_at',dayAgo).order('created_at',{ascending:false});
   const allLogs=logs||[];
@@ -9367,6 +9452,78 @@ async function loadNexusThreatIntel(){
   const criticalEvents=allLogs.filter(l=>['critical','high'].includes(l.severity||nexusSeverity(l.event_type)));
   const badge=document.getElementById('nexus-threats-badge');
   if(badge)badge.style.display=criticalEvents.length?'inline':'none';
+
+  // Signatures textuelles en attente (matching flou >= 80% similarité) : ne
+  // deviennent bloquantes qu'après validation staff, cf. nexus_evaluate_risk.
+  await loadNexusPendingSignatures();
+}
+
+async function loadNexusPendingSignatures(){
+  const el=document.getElementById('nexus-pending-sig-list');
+  const badge=document.getElementById('nexus-pending-sig-badge');
+  if(!el)return;
+  let rows=[];
+  try{
+    const{data,error}=await db.rpc('nexus_list_pending_signatures');
+    if(error)throw error;
+    rows=data||[];
+  }catch(e){
+    el.innerHTML='<div style="text-align:center;padding:20px;color:rgba(231,233,220,.2);font-size:11px;font-family:var(--font-mono)">Impossible de charger (droits insuffisants ou migration absente)</div>';
+    return;
+  }
+  if(badge){
+    badge.style.display=rows.length?'inline':'none';
+    badge.textContent=rows.length;
+  }
+  if(!rows.length){
+    el.innerHTML='<div style="text-align:center;padding:20px;color:rgba(231,233,220,.2);font-size:11px;font-family:var(--font-mono)">✓ Aucune signature en attente</div>';
+    return;
+  }
+  el.innerHTML=rows.map(s=>`
+    <div style="padding:10px 0;border-bottom:1px solid rgba(231,233,220,.06)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-mono);font-size:11px;color:rgba(231,233,220,.5)">${esc(s.event_type)} &middot; ${new Date(s.created_at).toLocaleString('fr-FR')}</div>
+          <div style="font-size:12px;color:rgba(231,233,220,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(s.pattern_value)}">${esc(s.pattern_value)}</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="font-size:11px" onclick="nexusPreviewSignatureImpact('${esc(s.id)}',this)">&#128065; Impact</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:11px;color:#7a9a5a" onclick="nexusReviewSignature('${esc(s.id)}',true,this)">&#10003; Valider</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:11px;color:#aa5a5a" onclick="nexusReviewSignature('${esc(s.id)}',false,this)">&#10005; Rejeter</button>
+      </div>
+      <div id="nexus-sig-impact-${esc(s.id)}" style="display:none;margin-top:6px;font-size:11px;font-family:var(--font-mono);color:rgba(231,233,220,.6);padding:8px 10px;background:rgba(231,233,220,.04);border-radius:6px"></div>
+    </div>`).join('');
+}
+
+async function nexusPreviewSignatureImpact(id,btn){
+  const box=document.getElementById('nexus-sig-impact-'+id);
+  if(!box)return;
+  if(box.style.display==='block'){box.style.display='none';return;}
+  box.style.display='block';
+  box.textContent='Calcul de l\'impact sur les 30 derniers jours...';
+  try{
+    const{data,error}=await db.rpc('nexus_signature_impact_preview',{p_signature_id:id});
+    if(error)throw error;
+    const row=(data&&data[0])||{match_count:0,distinct_users:0,sample_user_refs:[]};
+    if(row.match_count==0){
+      box.innerHTML='✓ Aucun match sur les 30 derniers jours &mdash; aucun risque de faux positif visible.';
+    }else{
+      box.innerHTML=`⚠ ${row.match_count} event(s) sur ${row.distinct_users} utilisateur(s) distinct(s) auraient été forcés en <strong>critical</strong> par cette signature (30 derniers jours). Vérifie que ce n'est pas un pattern trop générique avant de valider.`;
+    }
+  }catch(e){
+    box.textContent='Erreur : '+(e.message||e);
+  }
+}
+
+async function nexusReviewSignature(id,approve,btn){
+  if(btn){btn.disabled=true;btn.parentElement.style.opacity='.5';}
+  try{
+    const{error}=await db.rpc('nexus_review_signature',{p_signature_id:id,p_approve:approve});
+    if(error)throw error;
+    showToast(approve?'Signature validée — active immédiatement':'Signature rejetée','success');
+  }catch(e){
+    showToast('Erreur : '+(e.message||e),'error');
+  }
+  loadNexusPendingSignatures();
 }
 
 function renderBruteForcePanel(logs){
@@ -9553,6 +9710,7 @@ function nexusFilterIncidents(el,filter){
 async function loadNexusIncidents(){
   const el=document.getElementById('nexus-incidents-list');
   if(!el)return;
+  if(!NEXUS_PROJECT_ID){el.innerHTML='<div style="text-align:center;padding:32px;color:rgba(27,36,25,.2);font-size:12px;font-family:var(--font-mono)">Aucun projet sélectionné.</div>';return;}
   el.innerHTML='<div style="text-align:center;padding:32px;color:rgba(27,36,25,.2);font-size:12px;font-family:var(--font-mono)">Chargement...</div>';
   let query=db.from('nexus_incidents').select('*').eq('project_id',NEXUS_PROJECT_ID).order('created_at',{ascending:false});
   if(_incidentsFilter!=='all')query=query.eq('status',_incidentsFilter);
